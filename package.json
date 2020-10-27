@@ -10,17 +10,11 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "eslint-plugin-import": "^2.22.1",
-<<<<<<< HEAD
-    "sass-loader": "^10.0.4",
-    "vue": "^2.6.11",
-    "vue-js-modal": "^2.0.0-rc.6",
-    "vue-loader": "^15.9.4",
-=======
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.4",
     "vue": "^2.6.11",
     "vue-i18n": "^8.22.1",
->>>>>>> 58cf15fd0213956e2b786617bdb0f2cc9f9247af
+    "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.2.0",
     "vuex": "^3.5.1"
   },
@@ -57,5 +51,18 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` yarn install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaphneRui/vue-tasty.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DaphneRui/vue-tasty/issues"
+  },
+  "homepage": "https://github.com/DaphneRui/vue-tasty#readme"
 }
