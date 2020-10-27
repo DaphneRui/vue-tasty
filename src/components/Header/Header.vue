@@ -24,12 +24,22 @@
     >
       <!-- 登录 -->
       <button class="down-login">
-        登录
+        {{ $t('login.login') }}
       </button>
       <!-- 切换中英文 -->
       <div class="down-language">
-        <button>中</button>
-        <button>En</button>
+        <button
+          :class="$i18n.locale == 'zh' ? 'on-choose' : ''"
+          @click="changeLang('zh')"
+        >
+          中
+        </button>
+        <button
+          :class="$i18n.locale == 'en' ? 'on-choose' : ''"
+          @click="changeLang('en')"
+        >
+          En
+        </button>
       </div>
     </div>
   </div>
@@ -44,8 +54,16 @@ export default {
       };
    },
    methods:{
+
+      /* 点击后出现框体 */
       ToShowDown (){
          this.showDown = !this.showDown;
+      },
+
+      /* 切换中英文 */
+      changeLang (lang) {
+         this.$i18n.locale = lang;
+
       }
    }
 

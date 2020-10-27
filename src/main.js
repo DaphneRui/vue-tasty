@@ -10,7 +10,7 @@ import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({
-   locale: 'en',  // 语言标识
+   locale: 'zh',  // 语言标识
    messages: {
       'zh': require('./common/i18n/zh-CN.json'),
       'en': require('./common/i18n/en-US.json')
