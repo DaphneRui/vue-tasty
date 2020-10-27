@@ -2,16 +2,22 @@
   <div class="App">
     <!-- Header组件 -->
     <Header />
+    <!-- error 组件 -->
+    <Error />
     <router-view />
   </div>
 </template>
 
 <script>
+
+/* components */
 import Header from './components/Header/Header';
+import Error from './components/errorModal/errorModal';
 export default {
    name: 'App',
    components: {
-      Header
+      Header,
+      Error
    }
 };
 </script>
