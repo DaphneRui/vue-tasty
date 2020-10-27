@@ -9,7 +9,6 @@
         display : flex;
         align-items : center;
         justify-content : space-between;
-        
     }
     img{
         width : 60px;
@@ -58,6 +57,10 @@
             }
             button:last-child {
                 right : 0;
+            }
+            .on-choose{
+                color : #fff;
+                background-color : #202020;
             }
         }
     }
