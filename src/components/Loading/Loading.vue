@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="showLoading"
     class="loading-container"
   >
     <img
@@ -12,7 +13,13 @@
 
 <script>
 import './loading.scss';
+import { mapState } from 'vuex';
 export default {
-   name:'Loading'
+   name:'Loading',
+   computed: {
+      ...mapState({
+         showLoading: state=>state.loading.showLoading
+      })
+   },
 };
 </script>

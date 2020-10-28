@@ -1,14 +1,16 @@
 <template>
   <div>
-    Close using this button:
-    <button>
-      showError
+    {{ $t('login.username') }}
+    {{ $t('login.password') }}
+    {{ $t('login.confirmPassword') }}
+    <button @click="$emit('close')">
+      <!-- {{ $t('login.signUp') }} -->
+      close
     </button>
   </div>
 </template>
 
 <script>
-// import Error from '../Error/Error';
 export default {
    name:'Modal',
 };

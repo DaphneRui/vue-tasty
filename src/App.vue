@@ -1,29 +1,28 @@
 <template>
-  <div id="app">
+  <div class="App">
+    <!-- Header组件 -->
+    <!-- <Header /> -->
     <router-view />
-    <button @click="showModal">
-      showModal
-    </button>
+    <Loading></Loading>
   </div>
 </template>
 
 <script>
-import Modal from './components/Modal/Modal';
+import Loading from './components/Loading/Loading';
+// import Header from './components/Header/Header';
 export default {
    name:'App',
-   methods: {
-      showModal () {
-         this.$modal.show(Modal, {
-            text: 'This text is passed as a property'
-         }, {
-            draggable: true,
-            clickToClose: false
-         });
-      }
-   },
+   components: {
+      // Header,
+      Loading
+   }
 };
 </script>
 
-<style>
-
+<style lang="scss">
+// .App{
+//   width : 1440px;
+//   padding : 0 120px;
+//   margin : auto;
+// }
 </style>
