@@ -39,13 +39,14 @@ export default {
    methods:{
 
       ...mapActions([ 'showModel','closeModal' ]),
-      /* error modal 的显示 */
+
+      /* 显示 error modal */
       openError (){
 
-         console.log(this);
          this.showModel();
 
       },
+      /* 关闭 error modal  */
       closeError (){
 
          this.closeModal();
