@@ -1,0 +1,50 @@
+.category-box{
+    page-break-inside : avoid;
+    break-inside : avoid;
+    margin-bottom : 70px;
+    .titleText{
+        font-family : PingFangSC-Regular;
+        font-style : normal;
+        font-weight : 600;
+        font-stretch : normal;
+        color : #202020;
+        letter-spacing : normal;
+    }
+    .rectangle{
+        width : 40px;
+        height : 8px;
+        margin-top : 3px;
+        background-color : #202020;
+    }
+    .menu-food-item{
+        position : relative;
+        display : flex;
+        cursor : pointer;
+        .menu-text{
+            width : 100%;
+            max-width : 140px;
+            height : auto;
+            margin-top : 30px;
+            font-family : PingFangSC-Regular;
+            font-size : 16px;
+            font-style : normal;
+            font-weight : 400;
+            font-stretch : normal;
+            line-height : 1.5;
+            color : #202020;
+            letter-spacing : normal;
+        }
+        .menu-price{
+            height : 24px;
+            margin-top : 30px;
+            font-family : PingFangSC;
+            font-size : 16px;
+            font-style : normal;
+            font-weight : 400;
+            font-stretch : normal;
+            line-height : 1.5;
+            color : #202020;
+            letter-spacing : normal;
+        }
+    }
+}
