@@ -18,3 +18,5 @@ export const SET_LANGUAGE = 'SET_LANGUAGE';
 
 /* restaurant */
 export const SET_REST_LIST = 'SET_REST_LIST';
+/* order */
+export const LOAD_ORDER = 'LOAD_ORDER';

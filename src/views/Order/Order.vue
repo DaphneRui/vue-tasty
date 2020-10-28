@@ -1,11 +1,18 @@
 <template>
   <div>
-    <button
+    <!-- <button
       class="order-btn"
       @click="click"
     >
       click
-    </button>
+    </button> -->
+    <div class="order-container">
+      <div class="order-tab">
+        <div class="order-tab-fixed">
+          {{ $t('order.title') }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,11 +29,11 @@ export default {
       };
    },
    methods: {
-      ...mapActions([ 'loadOrder' ]),
+      ...mapActions([ 'loadOrderActions' ]),
 
-      click (){
-         this.loadOrder();
-      }
+      // click (){
+      //    this.loadOrder();
+      // }
    },
 };
 </script>
