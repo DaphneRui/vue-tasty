@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style>
-
+button{
+   /* margin-top : 200px; */
+}
 </style>

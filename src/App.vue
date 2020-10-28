@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss">
 // .App{
-//   width : 1440px;
+//   width : 100vw;
 //   padding : 0 120px;
 //   margin : auto;
 // }
