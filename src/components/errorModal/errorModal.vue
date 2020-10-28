@@ -2,7 +2,7 @@
   <div>
     <button
       class="show-modal"
-      @click="openModal"
+      @click="openError"
     >
       点击
     </button>
@@ -25,29 +25,33 @@
 
 <script>
 
+import { mapActions,mapState } from 'vuex';
+
+import './errorModal.scss';
+
 export default {
    name:'Error',
-   data (){
-      return{
-         showError:false
-      };
+   computed:{
+      ...mapState({
+         showError: state=>state.error.showError
+      })
    },
    methods:{
-      /* error modal 的显示 */
-      openModal (){
 
-         this.showError = true;
+      ...mapActions([ 'showModel','closeModal' ]),
+      /* error modal 的显示 */
+      openError (){
+
+         console.log(this);
+         this.showModel();
 
       },
       closeError (){
 
-         this.showError = false;
+         this.closeModal();
       }
    }
 
 };
 </script>
 
-<style lang="scss">
-@import './errorModal.scss'
-</style>
