@@ -3,7 +3,7 @@
     <!-- Header组件 -->
     <Header />
     <!-- error组件 -->
-    <Error />
+    <!-- <Error /> -->
     <router-view />
     <Loading></Loading>
   </div>
@@ -13,21 +13,21 @@
 /* components */
 import Loading from './components/Loading/Loading';
 import Header from './components/Header/Header';
-import Error from './components/errorModal/errorModal';
+// import Error from './components/errorModal/errorModal';
 export default {
    name:'App',
    components: {
       Loading,
       Header,
-      Error
+      // Error
    }
 };
 </script>
 
 <style lang="scss">
-// .App{
-//   width : 1440px;
-//   padding : 0 120px;
-//   margin : auto;
-// }
+.App{
+  width : 1440px;
+  padding : 0 120px;
+  margin : auto;
+}
 </style>
