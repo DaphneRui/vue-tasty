@@ -4,10 +4,11 @@ import Vuex from 'vuex';
 /* global */
 import error from './error.js';
 import loading from './loading';
+import language from './language';
 
 /* page */
 import order from '@/views/Order/module/index';
-import error from './error';
+import restaurant from '@/views/Restaurant/module/index';
 
 Vue.use(Vuex);
 
@@ -21,8 +22,9 @@ export default new Vuex.Store({
    modules: {
       loading,
       order,
-      login,
       error,
+      language,
+      restaurant
    }
 });
 

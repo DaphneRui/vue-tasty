@@ -3,7 +3,7 @@
     <!-- Header组件 -->
     <Header />
     <!-- error组件 -->
-    <Error />
+    <!-- <Error /> -->
     <Loading></Loading>
     <!-- 页面 -->
     <div class="main-content">
@@ -16,13 +16,13 @@
 /* components */
 import Loading from './components/Loading/Loading';
 import Header from './components/Header/Header';
-import Error from './components/errorModal/errorModal';
+// import Error from './components/errorModal/errorModal';
 export default {
    name:'App',
    components: {
       Loading,
       Header,
-      Error
+      // Error
    }
 };
 </script>

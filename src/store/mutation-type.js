@@ -12,3 +12,9 @@ export const HIDE_LOADING = 'HIDE_LOADING';
 export const SHOW_MODAL = 'SHOW_MODAL';
 
 export const HIDE_MODAL = 'HIDE_MODAL';
+
+/* language */
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+
+/* restaurant */
+export const SET_REST_LIST = 'SET_REST_LIST';
