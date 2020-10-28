@@ -18,11 +18,12 @@ Vue.config.productionTip = false;
 Vue.use(VueI18n);
 
 export const i18n = new VueI18n({
-   locale: 'en',  // 语言标识
+   locale: JSON.parse(localStorage.getItem('language')) || 'zh-CN',
    messages: {
-      'zh': require('./common/i18n/zh-CN.json'),
-      'en': require('./common/i18n/en-US.json')
-   }
+      'zh-CN': require('./common/i18n/zh-CN.json'),
+      'en-US': require('./common/i18n/en-US.json')
+   },
+
 });
 
 new Vue({
