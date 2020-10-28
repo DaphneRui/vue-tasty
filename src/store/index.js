@@ -7,7 +7,8 @@ import loading from './loading';
 
 /* page */
 import order from '@/views/Order/module/index';
-import error from './error';
+import login from '@/views/Login/module/index';
+import menu from '@/views/Menu/module/index';
 
 Vue.use(Vuex);
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
       order,
       login,
       error,
+      menu
    }
 });
 

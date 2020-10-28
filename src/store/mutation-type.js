@@ -12,3 +12,7 @@ export const HIDE_LOADING = 'HIDE_LOADING';
 export const SHOW_MODAL = 'SHOW_MODAL';
 
 export const HIDE_MODAL = 'HIDE_MODAL';
+
+/* menu */
+
+export const SET_MENU = 'SET_MENU';

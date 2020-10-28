@@ -32,5 +32,25 @@
         max-width : 700px;
         margin-top : 69px;
         column-count : 2;
+        .category-box{
+            page-break-inside : avoid;
+            break-inside : avoid;
+            margin-bottom : 70px;
+            // border : 1px solid #000;
+            .titleText{
+                font-family : PingFangSC-Regular;
+                font-style : normal;
+                font-weight : 600;
+                font-stretch : normal;
+                color : #202020;
+                letter-spacing : normal;
+            }
+            .rectangle{
+                width : 40px;
+                height : 8px;
+                margin-top : 3px;
+                background-color : #202020;
+            }
+        }
     } 
 }
