@@ -28,11 +28,11 @@ export default {
 </script>
 
 <style lang="scss">
-// .App{
-//   width : 1440px;
-//   padding : 0 120px;
-//   margin : auto;
-// }
+.App{
+  width : 1440px;
+  padding : 0 120px;
+  margin : auto;
+}
 .main-content{
   position : relative;
   top :100px;
