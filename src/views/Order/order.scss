@@ -1,0 +1,29 @@
+@import '../../style/global.scss';
+
+.order-container{
+    display : flex;
+    flex-direction : row;
+
+
+}
+.order-tab{
+    position : relative;
+    width : 30%;
+    height : 300px;
+    margin-top : 30px;
+    margin-left : 30px;
+    @extend .h2;
+
+}
+
+.order-tab-fixed{
+    position : fixed;
+}
+
+.order-list{
+    position : relative;
+    display : grid;
+    grid-template-columns : 33% 33% 33%;
+    grid-row-gap : 30px;
+    width : 100%;
+}

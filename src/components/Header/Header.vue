@@ -36,14 +36,14 @@
       <!-- 切换中英文 -->
       <div class="down-language">
         <button
-          :class="$i18n.locale == 'zh' ? 'on-choose' : ''"
-          @click="changeLang('zh')"
+          :class="$i18n.locale == 'zh-CN' ? 'on-choose' : ''"
+          @click="changeLang('zh-CN')"
         >
           中
         </button>
         <button
-          :class="$i18n.locale == 'en' ? 'on-choose' : ''"
-          @click="changeLang('en')"
+          :class="$i18n.locale == 'en-US' ? 'on-choose' : ''"
+          @click="changeLang('en-US')"
         >
           En
         </button>
@@ -58,12 +58,18 @@
 </template>
 
 <script>
+import { mapState,mapActions } from 'vuex';
 export default {
    name: 'Header',
    data () {
       return {
          showDown: false
       };
+   },
+   computed:{
+      ...mapState({
+         'lang': state => state.language.lang
+      }),
    },
    mounted (){
       /* 点击头像后出现框体,点击其他地方框体消失 */
@@ -80,10 +86,13 @@ export default {
       });
    },
    methods:{
-
+      ...mapActions([
+         'setLanguage'
+      ]),
       /* 切换中英文 */
       changeLang (lang) {
          this.$i18n.locale = lang;
+         this.setLanguage(lang);
       }
    }
 

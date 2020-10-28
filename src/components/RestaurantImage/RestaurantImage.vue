@@ -1,7 +1,7 @@
 <template>
   <div class="restaurantItem">
     <div class="title-text">
-      {{ name }}
+      {{ item.name }}
     </div>
     <div
       v-for="(subTitle,index) in item.tags "
@@ -14,31 +14,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 
 export default {
    name:'RestaurantItem',
    props: {
       item: {
-         type: Object,
+         type: Array,
          require: true,
          default (){
-            return {};
+            return [];
          }
       }
    },
-   computed:{
-      ...mapState({
-         'lang': state => state.language.lang
-      }),
-      name (){
-
-         return this.$props.item.name[`${this.lang}`];
-      }
-   },
-   mounted (){
-      console.log(this.$props.item);
-   }
 };
 </script>
 
