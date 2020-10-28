@@ -4,8 +4,11 @@
     <Header />
     <!-- error组件 -->
     <Error />
-    <router-view />
     <Loading></Loading>
+    <!-- 页面 -->
+    <div class="main-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -30,4 +33,9 @@ export default {
 //   padding : 0 120px;
 //   margin : auto;
 // }
+.main-content{
+  position : relative;
+  top :100px;
+}
+
 </style>
