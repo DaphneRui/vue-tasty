@@ -2,10 +2,10 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 /* global */
-// import loading from './loading';
+import loading from './loading';
 
 /* page */
-// import login from '@/views/Login/module';
+import order from '@/views/Order/module/index';
 
 Vue.use(Vuex);
 
@@ -17,7 +17,8 @@ export default new Vuex.Store({
    actions: {
    },
    modules: {
-       
+      loading,
+      order
    }
 });
 
