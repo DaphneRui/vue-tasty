@@ -10,9 +10,10 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "eslint-plugin-import": "^2.22.1",
-    "node-sass": "^4.14.1",
     "sass-loader": "^10.0.4",
     "vue": "^2.6.11",
+    "vue-loader": "^15.9.4",
+    "node-sass": "^4.14.1",
     "vue-i18n": "^8.22.1",
     "vue-js-modal": "^2.0.0-rc.6",
     "vue-router": "^3.2.0",
