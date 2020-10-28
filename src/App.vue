@@ -2,7 +2,7 @@
   <div class="App">
     <!-- Header组件 -->
     <Header />
-    <!-- error 组件 -->
+    <!-- error组件 -->
     <Error />
     <router-view />
   </div>
