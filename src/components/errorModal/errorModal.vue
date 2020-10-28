@@ -11,7 +11,7 @@
       class="container"
     >
       <h4>{{ $t('login.error.name') }}</h4>
-      <div>
+      <div class="content">
         <button
           class="close-btn"
           @click="closeError"
