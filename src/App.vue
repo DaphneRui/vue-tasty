@@ -2,16 +2,23 @@
   <div class="App">
     <!-- Header组件 -->
     <Header />
-    <!-- error 组件 -->
+    <!-- modal组件 -->
+    <Modal></Modal>
+    <!-- error组件 -->
     <Error />
-    <router-view />
+    <!-- loading组件 -->
     <Loading></Loading>
+    <!-- 页面 -->
+    <div class="main-content">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 /* components */
 import Loading from './components/Loading/Loading';
+import Modal from './components/Modal/Modal';
 import Header from './components/Header/Header';
 import Error from './components/errorModal/errorModal';
 export default {
@@ -19,15 +26,31 @@ export default {
    components: {
       Loading,
       Header,
-      Error
+      Error,
+      Modal
    }
 };
 </script>
 
 <style lang="scss">
-// .App{
-//   width : 100vw;
-//   padding : 0 120px;
-//   margin : auto;
-// }
+*{
+   padding : 0;
+   margin : 0;
+}
+.App{
+//   width : 1440px;
+  padding : 0 120px;
+  margin : auto;
+background-color : #f7f7f7;
+}
+.main-content{
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  width : 100%;
+  height : calc(100vh - 45px);
+}
+.test{
+  border : 1px solid #000;
+}
 </style>

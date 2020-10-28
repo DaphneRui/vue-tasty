@@ -7,14 +7,15 @@
         alt=""
       >
     </div>
+
     <!-- header-right 点击后，出现一个框体 -->
     <div
       class="header-right"
-      @click="ToShowDown"
     >
       <img
         src="../../assets/profile-icon.png"
         alt=""
+        class="profile"
       >
     </div>
     <!-- header-right-down 点击后出现的框体 -->
@@ -26,6 +27,12 @@
       <button class="down-login">
         {{ $t('login.login') }}
       </button>
+
+      <!-- 历史订单 -->
+      <!-- <button class="down-order">
+        {{ $t('order.title') }}
+      </button> -->
+
       <!-- 切换中英文 -->
       <div class="down-language">
         <button
@@ -41,6 +48,11 @@
           En
         </button>
       </div>
+
+      <!-- 登出 -->
+      <!-- <button class="down-logout">
+        {{ $t('logout') }}
+      </button> -->
     </div>
   </div>
 </template>
@@ -53,17 +65,25 @@ export default {
          showDown: false
       };
    },
+   mounted (){
+      /* 点击头像后出现框体,点击其他地方框体消失 */
+      document.addEventListener('click',(e)=>{
+         if(e.target.className === 'profile'){
+            this.showDown = true;
+         }else {
+            this.showDown = false;
+         }
+      });
+      /* 点击框体内部不让框体消失 */
+      document.getElementsByClassName('header-right-down')[0].addEventListener('click',(e)=>{
+         e.stopPropagation();
+      });
+   },
    methods:{
-
-      /* 点击后出现框体 */
-      ToShowDown (){
-         this.showDown = !this.showDown;
-      },
 
       /* 切换中英文 */
       changeLang (lang) {
          this.$i18n.locale = lang;
-
       }
    }
 

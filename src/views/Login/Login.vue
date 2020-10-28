@@ -1,19 +1,49 @@
 <template>
-  <div>
-    <button @click="handleLogin">
-      login
-    </button>
-    <button @click="showModal">
-      {{ $t('login.login') }}
-    </button>
+  <div class="login-container">
+    <div class="input-box login-input-box">
+      <div class="input-title">
+        {{ $t('login.username') }}
+      </div>
+      <div>
+        <input
+          type="text"
+          class="input"
+        >
+      </div>
+    </div>
+    <div class="input-box">
+      <div class="input-title">
+        {{ $t('login.password') }}
+      </div>
+      <div>
+        <input
+          type="password"
+          class="input"
+        >
+      </div>
+    </div>
+    <div class="login-btn-box containerCol vertical">
+      <button
+        class="normal-btn login-btn"
+        @click="handleLogin"
+      >
+        {{ $t('login.login') }}
+      </button>
+      <button
+        class="normal-btn sign-up-btn"
+        @click="showModal"
+      >
+        {{ $t('login.signUp') }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import Modal from '../../components/Modal/Modal';
 import { mapActions } from 'vuex';
 
 export default {
+   name:'Login',
    methods:{
       ...mapActions([ 'login' ]),
       /* 通过全局状态控制loading的显示 */
@@ -22,7 +52,7 @@ export default {
       },
       /* vue-js-modal实现modal的显示 */
       showModal () {
-         this.$modal.show(Modal, {
+         this.$modal.show('regist', {
             text: 'This text is passed as a property'
          }, {
             draggable: true,
@@ -34,7 +64,26 @@ export default {
 </script>
 
 <style>
-button{
-   /* margin-top : 200px; */
+
+input{
+   border-style : hidden;
+   outline : none;
 }
+
+.login-btn-box{
+   display : flex;
+   flex-direction : column;
+}
+
+.login-btn, .sign-up-btn {
+   width : 300px;
+   margin-top : 30px;
+   outline : none;
+}
+
+.sign-up-btn {
+   color : #202020;
+   background-color : #fff;
+}
+
 </style>

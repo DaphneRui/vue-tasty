@@ -1,53 +1,44 @@
 <template>
-  <div>
-    <button
-      class="show-modal"
-      @click="openModal"
-    >
-      点击
-    </button>
-    <div
-      v-if="showError"
-      class="container"
-    >
-      <h4>{{ $t('login.error.name') }}</h4>
+  <modal
+    name="error"
+    :width="440"
+    :height="120"
+  >
+    <div class="error-box">
       <div>
+        {{ $t('login.error.name') }}
+      </div>
+      <div class="container-col vertical space-between error-btn-box">
         <button
-          class="confirm"
-          @click="closeError"
+          class="normal-btn"
+          @click="hideError"
         >
-          确定
+          {{ $t('close') }}
         </button>
       </div>
     </div>
-  </div>
+  </modal>
 </template>
 
 <script>
-
 export default {
-   name:'Error',
-   data (){
-      return{
-         showError:false
-      };
-   },
-   methods:{
-      /* error modal 的显示 */
-      openModal (){
-
-         this.showError = true;
-
-      },
-      closeError (){
-
-         this.showError = false;
+   name:'ErrorModal',
+   methods: {
+      hideError (){
+         this.$modal.hide('error');
       }
-   }
-
+   },
 };
 </script>
 
-<style lang="scss">
-@import './errorModal.scss'
+<style type='scss'>
+.error-box{
+  padding : 20px;
+}
+.error-btn-box{
+  margin-top : 10px;
+}
+.normal-btn{
+  outline : none;
+}
 </style>
