@@ -5,4 +5,18 @@
     max-height : 600px;
     padding : 20px;
     margin-bottom : 91px;
+    .title-text{
+        font-size : 30px;
+        font-weight : 600;        
+        color : rgb(32, 32, 32);
+        cursor : pointer;
+    }
+    .subTitleText {
+        width : 220px;
+        height : 24px;
+        font-size : 16px;
+        font-weight : 400;
+        line-height : 1.5;
+        color : rgb(121, 121, 121);
+    }
 }

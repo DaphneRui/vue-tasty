@@ -23,6 +23,12 @@ const fetch = (options) => {
       headers.user = `${id}`;
    }
 
+   // const token = _.get(getStorage('user'), 'token');
+
+   // if (token) {
+   //    headers.Authorization = `${token}`;
+   // }
+
    headers['Content-Type'] = 'application/json';
 
    /* cache */

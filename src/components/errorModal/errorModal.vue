@@ -1,58 +1,44 @@
 <template>
-  <div>
-    <div
-      class="show-modal"
-      @click="openError"
-    >
-      点击
-    </div>
-    <div
-      v-if="showError"
-      class="container"
-    >
-      <h4>{{ $t('login.error.name') }}</h4>
-      <div class="content">
+  <modal
+    name="error"
+    :width="440"
+    :height="120"
+  >
+    <div class="error-box">
+      <div>
+        {{ $t('login.error.name') }}
+      </div>
+      <div class="container-col vertical space-between error-btn-box">
         <button
-          class="close-btn"
-          @click="closeError"
+          class="normal-btn"
+          @click="hideError"
         >
           {{ $t('close') }}
         </button>
       </div>
     </div>
-  </div>
+  </modal>
 </template>
 
 <script>
-
-import { mapActions,mapState } from 'vuex';
-
-import './errorModal.scss';
-
 export default {
-   name:'Error',
-   computed:{
-      ...mapState({
-         showError: state=>state.error.showError
-      })
-   },
-   methods:{
-
-      ...mapActions([ 'showModel','closeModal' ]),
-
-      /* 显示 error modal */
-      openError (){
-
-         this.showModel();
-
-      },
-      /* 关闭 error modal  */
-      closeError (){
-
-         this.closeModal();
+   name:'ErrorModal',
+   methods: {
+      hideError (){
+         this.$modal.hide('error');
       }
-   }
-
+   },
 };
 </script>
 
+<style type='scss'>
+.error-box{
+  padding : 20px;
+}
+.error-btn-box{
+  margin-top : 10px;
+}
+.normal-btn{
+  outline : none;
+}
+</style>

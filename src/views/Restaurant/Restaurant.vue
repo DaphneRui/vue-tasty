@@ -19,16 +19,30 @@
 </template>
 
 <script>
-import restItem from '../../components/restaurantItem/restaurantItem';
+// import restItem from '@/components/RestaurantItem/RestaurantItem';
+import { mapActions,mapState } from 'vuex';
 export default {
    name:'Restaurant',
    components: {
-      restItem
+      // restItem
    },
    data () {
       return {
-         list: []
+
       };
+   },
+   computed: {
+      ...mapState({
+         'list': state => state.restaurant.restList
+      }),
+   },
+   created () {
+      this.setRestList();
+   },
+   methods: {
+      ...mapActions([
+         'setRestList'
+      ]),
    },
 };
 </script>
