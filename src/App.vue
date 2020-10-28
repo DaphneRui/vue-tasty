@@ -1,20 +1,25 @@
 <template>
   <div class="App">
     <!-- Header组件 -->
-    <!-- <Header /> -->
+    <Header />
+    <!-- error 组件 -->
+    <Error />
     <router-view />
     <Loading></Loading>
   </div>
 </template>
 
 <script>
+/* components */
 import Loading from './components/Loading/Loading';
-// import Header from './components/Header/Header';
+import Header from './components/Header/Header';
+import Error from './components/errorModal/errorModal';
 export default {
    name:'App',
    components: {
-      // Header,
-      Loading
+      Loading,
+      Header,
+      Error
    }
 };
 </script>
