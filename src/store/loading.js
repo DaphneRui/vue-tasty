@@ -3,18 +3,18 @@ import * as types from './mutation-type';
 const loading = {
 
    state:{
-      show: false
+      showLoading: false
    },
    mutations:{
 
       /* show loading */
       [types.SHOW_LOADING] (state){
-         state.show = true;
+         state.showLoading = true;
       },
 
       /* hide loading */
       [types.HIDE_LOADING] (state){
-         state.show = false;
+         state.showLoading = false;
       }
    }
 };

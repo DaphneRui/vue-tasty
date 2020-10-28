@@ -4,9 +4,14 @@ import VueI18n from 'vue-i18n';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VModal from 'vue-js-modal';
 
-/* vue-js-modal */
-// import VModal from 'vue-js-modal';
+/* 全局style */
+import './style/color.scss';
+import './style/global.scss';
+import './style/size.scss';
+
+Vue.use(VModal);
 
 Vue.config.productionTip = false;
 
