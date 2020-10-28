@@ -13,14 +13,22 @@
         </div>
       </div>
     </div>
+    <div class="order-list">
+      <div
+        v-for="item in order"
+        :key="item._id"
+      >
+        {{ $t('order.more') }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions,mapState } from 'vuex';
 // import { loadOrder } from '@/request/order';
 import './order.scss';
-
+/* eslint-disable */
 export default {
    name:'Order',
    data () {
@@ -35,6 +43,11 @@ export default {
       //    this.loadOrder();
       // }
    },
+   computed:{
+      ...mapState({
+         orders: state=>state.order.orders
+      })
+   }
 };
 </script>
 

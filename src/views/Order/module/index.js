@@ -4,7 +4,7 @@
 const order = {
 
    state:{
-      show: false
+      order
    },
    actions:{
       // async loadOrder (){
