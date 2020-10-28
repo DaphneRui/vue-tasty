@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import * as types from './mutation-type';
 
 const loading = {
@@ -22,4 +20,3 @@ const loading = {
 };
 
 export default loading;
->>>>>>> 2e82df53237e7e67e1dae1636b93e27248a0bbfa

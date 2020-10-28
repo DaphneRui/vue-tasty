@@ -1,11 +1,11 @@
 <template>
   <div>
-    <button
+    <div
       class="show-modal"
       @click="openError"
     >
       点击
-    </button>
+    </div>
     <div
       v-if="showError"
       class="container"
@@ -13,10 +13,10 @@
       <h4>{{ $t('login.error.name') }}</h4>
       <div>
         <button
-          class="confirm"
+          class="close-btn"
           @click="closeError"
         >
-          确定
+          {{ $t('close') }}
         </button>
       </div>
     </div>
