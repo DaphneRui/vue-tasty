@@ -1,11 +1,11 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { parse,compile } from 'path-to-regexp';
-import CustomError from './CustomError';
-import { getStorage } from './utils';
+// import { parse,compile } from 'path-to-regexp';
+import CustomError from './customError';
+// import { getStorage } from './utils';
 
 /* 30 sec timeout */
-axios.defaults.timeout = 30000;
+axios.defaults.timeout = 3000;
 
 /**
  * request
@@ -16,10 +16,11 @@ const fetch = (options) => {
    const { data = {}, headers = {}, method } = options;
 
    // const token = _.get(getStorage('user'), '_id');
-   const token = _.get(getStorage('user'), 'token');
+   // const token = _.get(getStorage('user'), 'token');
+   const id = '5e219e0aa274ef537609fe86';
 
-   if (token) {
-      headers.Authorization = `${token}`;
+   if (id) {
+      headers.user = `${id}`;
    }
 
    headers['Content-Type'] = 'application/json';
@@ -30,33 +31,33 @@ const fetch = (options) => {
    /* Clone request body data */
    const cloneData = _.cloneDeep(data);
 
-   try {
-      let domin = '';
+   // try {
+   //    let domin = '';
 
-      if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
-         const { 0: val } = url.match(/[a-zA-z]+:\/\/[^/]*/);
+   //    if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
+   //       const { 0: val } = url.match(/[a-zA-z]+:\/\/[^/]*/);
 
-         domin = val;
-         url = url.slice(domin.length);
-      }
+   //       domin = val;
+   //       url = url.slice(domin.length);
+   //    }
 
-      const match = parse(url);
+   //    const match = parse(url);
 
-      url = compile(url)(data);
+   //    url = compile(url)(data);
 
-      _.forEach(match, item => {
+   //    _.forEach(match, item => {
 
-         if (item instanceof Object && item.name in cloneData) {
-            delete cloneData[item.name];
-         }
-      });
-      url = domin + url;
+   //       if (item instanceof Object && item.name in cloneData) {
+   //          delete cloneData[item.name];
+   //       }
+   //    });
+   //    url = domin + url;
 
-   } catch (e) {
+   // } catch (e) {
 
-      console.log(e);
-      _.noop();
-   }
+   //    console.log(e);
+   //    _.noop();
+   // }
 
    switch (_.toLower(method)) {
    case 'get':

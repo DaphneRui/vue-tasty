@@ -1,4 +1,6 @@
 import Vue from 'vue';
+/* 引入 vue-i18n */
+import VueI18n from 'vue-i18n';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -13,12 +15,10 @@ Vue.use(VModal);
 
 Vue.config.productionTip = false;
 
-/* 引入 vue-i18n */
-import VueI18n from 'vue-i18n';
 Vue.use(VueI18n);
 
-const i18n = new VueI18n({
-   locale: 'zh',  // 语言标识
+export const i18n = new VueI18n({
+   locale: 'en',  // 语言标识
    messages: {
       'zh': require('./common/i18n/zh-CN.json'),
       'en': require('./common/i18n/en-US.json')
@@ -26,8 +26,8 @@ const i18n = new VueI18n({
 });
 
 new Vue({
-   router,
    store,
+   router,
    i18n,
    render: h => h(App)
 }).$mount('#app');

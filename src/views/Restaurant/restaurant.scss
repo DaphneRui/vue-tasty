@@ -1,0 +1,38 @@
+.restaurant{
+    position : relative;
+    top : 100px;
+    .restaurant-container{
+        display : flex;
+        justify-content : space-between;
+        .rest-tab{
+            position : relative;
+            width : 30%;
+            height : auto;
+            margin-top : 30px;
+            margin-left : 30px;
+            line-height : 1;
+            word-break : break-all;
+            h1{
+                font-size : 50px;
+                font-weight : 600;
+            }
+            .rectangle{
+                position : absolute;
+                left : 0;
+                width : 40px;
+                height : 8px;
+                margin-top : 3px;
+                background-color : #202020;
+            }
+        }
+        .rest-boxs{
+            grid-column-gap : 20px;
+            column-gap : 20px;
+            width : 100%;
+            margin-left : 100px;
+            column-count : 2;
+            // border : 1px solid black;
+        }
+        
+    }
+}
