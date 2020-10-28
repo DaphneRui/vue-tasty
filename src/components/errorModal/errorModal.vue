@@ -11,7 +11,7 @@
       class="container"
     >
       <h4>{{ $t('login.error.name') }}</h4>
-      <div>
+      <div class="content">
         <button
           class="close-btn"
           @click="closeError"
@@ -39,13 +39,14 @@ export default {
    methods:{
 
       ...mapActions([ 'showModel','closeModal' ]),
-      /* error modal 的显示 */
+
+      /* 显示 error modal */
       openError (){
 
-         console.log(this);
          this.showModel();
 
       },
+      /* 关闭 error modal  */
       closeError (){
 
          this.closeModal();
