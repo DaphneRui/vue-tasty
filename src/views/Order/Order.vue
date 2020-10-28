@@ -3,12 +3,16 @@
 </template>
 
 <script>
+import './Order.scss';
 
 export default {
-   name:'Order'
+   name:'Order',
+
+   data (){
+      return{
+
+      };
+   }
 };
 </script>
 
-<style>
-
-</style>
