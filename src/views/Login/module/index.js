@@ -1,9 +1,11 @@
 import actions from './actions';
 import mutations from './mutations';
+import { getStorage } from '../../../common/utils';
 
+/* login的vuex里面定义数据 */
 const login = {
    state:{
-      show: false
+      user:getStorage('userInfo') || {}
    },
    actions,
    mutations

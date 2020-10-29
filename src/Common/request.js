@@ -13,6 +13,7 @@ axios.defaults.timeout = 3000;
 const fetch = (options) => {
 
    let { url } = options;
+   console.log('//////', options);
    const { data = {}, headers = {}, method } = options;
 
    // const token = _.get(getStorage('user'), '_id');
