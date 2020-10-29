@@ -13,6 +13,11 @@ export const SHOW_MODAL = 'SHOW_MODAL';
 
 export const HIDE_MODAL = 'HIDE_MODAL';
 
+<<<<<<< HEAD
+/* menu */
+
+export const SET_MENU = 'SET_MENU';
+=======
 /* language */
 export const SET_LANGUAGE = 'SET_LANGUAGE';
 
@@ -20,3 +25,4 @@ export const SET_LANGUAGE = 'SET_LANGUAGE';
 export const SET_REST_LIST = 'SET_REST_LIST';
 /* order */
 export const LOAD_ORDER = 'LOAD_ORDER';
+>>>>>>> ae80018334413d9f0cc180ca57078db4e5762d84
