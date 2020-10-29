@@ -1,4 +1,5 @@
 <template>
+  <!-- error模态框 -->
   <modal
     name="error"
     :width="440"
@@ -24,6 +25,7 @@
 export default {
    name:'ErrorModal',
    methods: {
+      /* button控制error模态框的消失 */
       hideError (){
          this.$modal.hide('error');
       }

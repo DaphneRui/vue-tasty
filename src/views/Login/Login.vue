@@ -1,40 +1,43 @@
 <template>
-  <div class="login-container">
-    <div class="input-box login-input-box">
-      <div class="input-title">
-        {{ $t('login.username') }}
+  <!-- 登录页面 -->
+  <div class="login-box">
+    <div class="login-container">
+      <div class="input-box login-input-box">
+        <div class="input-title">
+          {{ $t('login.username') }}
+        </div>
+        <div>
+          <input
+            type="text"
+            class="input"
+          >
+        </div>
       </div>
-      <div>
-        <input
-          type="text"
-          class="input"
+      <div class="input-box">
+        <div class="input-title">
+          {{ $t('login.password') }}
+        </div>
+        <div>
+          <input
+            type="password"
+            class="input"
+          >
+        </div>
+      </div>
+      <div class="login-btn-box container-col vertical">
+        <button
+          class="normal-btn login-btn"
+          @click="handleLogin"
         >
-      </div>
-    </div>
-    <div class="input-box">
-      <div class="input-title">
-        {{ $t('login.password') }}
-      </div>
-      <div>
-        <input
-          type="password"
-          class="input"
+          {{ $t('login.login') }}
+        </button>
+        <button
+          class="normal-btn sign-up-btn"
+          @click="showModal"
         >
+          {{ $t('login.signUp') }}
+        </button>
       </div>
-    </div>
-    <div class="login-btn-box containerCol vertical">
-      <button
-        class="normal-btn login-btn"
-        @click="handleLogin"
-      >
-        {{ $t('login.login') }}
-      </button>
-      <button
-        class="normal-btn sign-up-btn"
-        @click="showModal"
-      >
-        {{ $t('login.signUp') }}
-      </button>
     </div>
   </div>
 </template>
@@ -64,7 +67,13 @@ export default {
 </script>
 
 <style>
-
+.login-box{
+  display : flex;
+  align-items : center;
+  justify-content : center;
+  width : 100%;
+  height : calc(100vh - 145px);
+}
 input{
    border-style : hidden;
    outline : none;
