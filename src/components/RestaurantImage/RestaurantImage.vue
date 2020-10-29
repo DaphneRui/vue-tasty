@@ -1,14 +1,34 @@
 <template>
-  <div class="restaurantItem">
-    <div class="title-text">
-      {{ item.name }}
+  <div class="restaurantImage">
+    <div class="rest-box1">
+      <div class="rest-food-name"></div>
+      <div class="rest-image-box">
+        <img
+          src="../../assets/dark-dish.png"
+          alt=""
+          class="dish-image"
+        >
+      </div>
     </div>
-    <div
-      v-for="(subTitle,index) in item.tags "
-      :key="index"
-      class="subTitleText"
-    >
-      {{ subTitle }}
+    <div class="rest-box2">
+      <div class="rest-food-name"></div>
+      <div class="rest-image-box">
+        <img
+          src="../../assets/dark-dish.png"
+          alt=""
+          class="dish-image"
+        >
+      </div>
+    </div>
+    <div class="rest-box3">
+      <div class="rest-food-name"></div>
+      <div class="rest-image-box">
+        <img
+          src="../../assets/dark-dish.png"
+          alt=""
+          class="dish-image"
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -16,19 +36,21 @@
 <script>
 
 export default {
-   name:'RestaurantItem',
+   name:'RestaurantImage',
    props: {
       item: {
-         type: Array,
+         type: Object,
          require: true,
          default (){
-            return [];
+            return {};
          }
       }
    },
+   computed:{
+   }
 };
 </script>
 
 <style scoped lang="scss">
-@import './restaurantItem'
+@import './restaurantImage'
 </style>

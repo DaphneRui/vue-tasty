@@ -1,23 +1,38 @@
 <template>
   <div class="restaurantItem">
     <div class="title-text">
-      {{ name }}
+      {{ item.name[`${lang}`] }}
+    </div>
+    <div class="subTitleTexts">
+      <div
+        v-for="(subTitle,index) in item.tags "
+        :key="index"
+        class="subTitleText"
+      >
+        {{ subTitle }}
+      </div>
     </div>
     <div
-      v-for="(subTitle,index) in item.tags "
+      v-for="(imgages,index) in item.items "
       :key="index"
-      class="subTitleText"
+      class="img-boxs"
     >
-      {{ subTitle }}
+      <rest-img
+        :item="imgages"
+      ></rest-img>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import restImg from '../RestaurantImage/RestaurantImage';
 
 export default {
    name:'RestaurantItem',
+   components: {
+      restImg
+   },
    props: {
       item: {
          type: Object,
@@ -27,18 +42,19 @@ export default {
          }
       }
    },
+   data (){
+      return{
+
+      };
+   },
    computed:{
       ...mapState({
          'lang': state => state.language.lang
       }),
-      name (){
-
-         return this.$props.item.name[`${this.lang}`];
-      }
+      //   name (){
+      //      return this.$props.item.name[`${this.lang}`];
+      //   }
    },
-   mounted (){
-      console.log(this.$props.item);
-   }
 };
 </script>
 
