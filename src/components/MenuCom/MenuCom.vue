@@ -11,7 +11,7 @@
       <div class="menu-food-item">
         <div class="menu-text">
           <!-- 时蔬过桥米线 -->
-          <!-- {{ foods }} -->
+          {{ menu }}
           <br />
           <!-- {{ menuCategories[0]._id }} -->
         </div>
@@ -30,11 +30,8 @@ export default {
 
    name:'MenuComponent',
    props:{
-      // categories:{
-      //    type:Array,
-      //    required:true,
-      // },
-      foods:{
+
+      menu:{
          type:Object,
          required:true,
       }

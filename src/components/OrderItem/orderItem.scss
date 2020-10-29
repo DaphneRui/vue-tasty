@@ -1,0 +1,44 @@
+.order-item-box{
+    position : relative;
+    box-sizing : border-box;
+    width : 220px;
+    height : 390px;
+    padding : 10px 20px;
+    overflow : hidden;
+    background-color : #f7f7f7;
+    border : 1px solid #afafaf;
+    border-radius : 5px;
+    transition : all .5s ease;
+}
+.order-title{
+    padding-bottom : 10px;
+    margin-bottom : 10px;
+    border-bottom : 1px solid #afafaf;
+}
+.order-items{
+    height : 160px;
+    overflow : auto;
+}
+.order-item-box-show{
+    position : relative;
+    z-index : 2;
+    width :350px;
+    height : 590px;
+}
+.order-item-name{
+    overflow :hidden;
+    text-align : center;  
+    white-space : nowrap;
+}
+.order-footer{
+    border-top : solid 1px #afafaf;
+}
+.more-btn{
+    margin-top : 50px;
+}
+.container-row-center{
+    margin-top : 20px;
+}
+.order-total{
+    font-size : 24px;
+}

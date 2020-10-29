@@ -1,15 +1,12 @@
 import actions from './actions';
 import mutations from './mutations';
 
-const menu = {
+const regist = {
    state:{
-      menuList:{
-         categories:[],
-         foods:[]
-      }
+      user:{}
    },
    actions,
    mutations
 };
 
-export default menu;
+export default regist;

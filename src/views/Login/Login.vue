@@ -8,6 +8,7 @@
         </div>
         <div>
           <input
+            v-model="username"
             type="text"
             class="input"
           >
@@ -19,6 +20,7 @@
         </div>
         <div>
           <input
+            v-model="password"
             type="password"
             class="input"
           >
@@ -44,16 +46,30 @@
 
 <script>
 import { mapActions } from 'vuex';
+/* 引入加密函数 */
+import { encode } from '../../common/utils';
 
 export default {
    name:'Login',
+   data () {
+      return {
+         username: '',
+         password: ''
+      };
+   },
    methods:{
       ...mapActions([ 'login' ]),
-      /* 通过全局状态控制loading的显示 */
+      /* 点击登录按钮之后把用户输入的数据加密之后存入vuex */
       handleLogin (){
-         this.login();
+         //  if(this.username){
+         this.username = encode(this.username);
+         //  }else{
+         //  this.$modal.show('error');
+         //  }
+         this.password = encode(this.password);
+         this.login({ username:this.username,password:this.password });
       },
-      /* vue-js-modal实现modal的显示 */
+      /* vue-js-modal实现registmodal的显示 */
       showModal () {
          this.$modal.show('regist', {
             text: 'This text is passed as a property'
@@ -61,7 +77,7 @@ export default {
             draggable: true,
             clickToClose: false
          });
-      }
+      },
    }
 };
 </script>

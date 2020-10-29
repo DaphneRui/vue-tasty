@@ -12,6 +12,7 @@
         </div>
         <div>
           <input
+            v-model="regUsername"
             type="text"
             class="input"
           >
@@ -23,6 +24,7 @@
         </div>
         <div>
           <input
+            v-model="regPassword"
             type="password"
             class="input"
           >
@@ -34,6 +36,7 @@
         </div>
         <div>
           <input
+            v-model="checkPassword"
             type="password"
             class="input"
           >
@@ -52,17 +55,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
    name:'RegistModal',
+   data () {
+      return {
+         regUsername:'',
+         regPassword:'',
+         checkPassword:'',
+      };
+   },
    methods:{
+      ...mapActions([ 'regist' ]),
       /* 通过vue-js-modal显示error框的显示 */
       showError (){
-         this.$modal.show('error', {
-            text: 'This text is passed as a property'
-         }, {
-            draggable: true,
-            clickToClose: false
-         });
+         this.regist({ regUsername:this.regUsername,regPassword:this.regPassword,checkPassword:this.checkPassword });
       }
    }
 };
