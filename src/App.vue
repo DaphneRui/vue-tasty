@@ -38,17 +38,16 @@ export default {
    margin : 0;
 }
 .App{
-//   width : 1440px;
+  width : 1440px;
   padding : 0 120px;
   margin : auto;
-background-color : #f7f7f7;
+// background-color : #f7f7f7;
 }
 .main-content{
+  position : relative;
+  top : 100px;
   display : flex;
-  align-items : center;
-  justify-content : center;
   width : 100%;
-  height : calc(100vh - 45px);
 }
 .test{
   border : 1px solid #000;
