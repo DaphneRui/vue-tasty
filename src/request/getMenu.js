@@ -8,7 +8,7 @@ export async function getMenu () {
       method:'get',
 
    });
-   // console.log('请求==>',result);
+   console.log('请求==>',result);
 
    return result;
 }
