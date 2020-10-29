@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import error from './error.js';
 import loading from './loading';
 import language from './language';
-
+import regist from '@/components/RegistModal/module/index';
 /* page */
 import order from '@/views/Order/module/index';
 import login from '@/views/Login/module/index';
@@ -28,7 +28,8 @@ export default new Vuex.Store({
       menu,
       login,
       language,
-      restaurant
+      restaurant,
+      regist
    }
 });
 
