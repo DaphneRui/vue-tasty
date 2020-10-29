@@ -17,10 +17,10 @@ const fetch = (options) => {
 
    // const token = _.get(getStorage('user'), '_id');
    // const token = _.get(getStorage('user'), 'token');
-   const id = '5e219e0aa274ef537609fe86';
+   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVwZGF0ZWRBdCI6IjIwMjAtMTAtMjJUMTE6MDQ6MzQuOTIyWiIsIl9pZCI6IjVmOTNlZDY3NzU2ZTNmNzZhN2E3M2EzZiIsInVzZXJuYW1lIjoibGFsYWxhIiwicGFzc3dvcmQiOiIkMmIkMTAkUUlnWS9acUtZaTU3djFiUFlQZy9NTzJmdnJoOEVCNXMwdnJKZXNWZ3Vsd0Fua2NNU0JNSksiLCJuaWNrbmFtZSI6IiIsImNyZWF0ZWRBdCI6IjIwMjAtMTAtMjRUMDk6MDE6MjcuMjY4WiIsIl9fdiI6MH0sImlhdCI6MTYwMzg1MDcwMSwiZXhwIjoxNjA0MTA5OTAxfQ.L1lgu19LYXPDrnqe0pTV2iW4O0oepXOalrY96HOT4SE';
 
-   if (id) {
-      headers.user = `${id}`;
+   if (token) {
+      headers.Authorization = `${token}`;
    }
 
    // const token = _.get(getStorage('user'), 'token');
