@@ -30,6 +30,10 @@
             width : 100%;
             margin-left : 100px;
             column-count : 2;
+            div{
+                /* 避免在元素内部断行并产生新列 */
+                -webkit-column-break-inside :avoid
+            }
             .rightColumn{
                 padding-top : 236px;
             }

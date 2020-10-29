@@ -3,7 +3,7 @@
     class="restaurantItem"
     @mouseover="changeStyle"
     @mouseleave="resumeStyle"
-    @click="toMenu"
+    @click="toMenuPage"
   >
     <!-- 餐馆名字 -->
     <div class="title-text">
@@ -76,7 +76,7 @@
 
 <script>
 import _ from 'lodash';
-import { mapState } from 'vuex';
+import { mapState,mapActions } from 'vuex';
 import restImg from '../RestaurantImage/RestaurantImage';
 
 export default {
@@ -155,8 +155,6 @@ export default {
       },
       /* 菜品图片 */
       imageUrl1 (){
-
-         console.log(this.defaultItems[0].image);
          return _.get(this.$props.item,'items[0].image.url',this.defaultItems[0].image);
       },
       imageUrl2 (){
@@ -167,9 +165,12 @@ export default {
       }
    },
    methods: {
+      ...mapActions([
+         'toMenu'
+      ]),
       /* 点击跳转到菜单 */
-      toMenu (){
-         console.log('跳转');
+      toMenuPage (){
+         this.toMenu({ restaurantId: this.$props.item._id });
       },
       /* mouseover 样式变化 */
       changeStyle (){
