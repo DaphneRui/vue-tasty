@@ -6,12 +6,20 @@
         <div class="rectangle"></div>
       </div>
       <div class="rest-boxs">
-        <div
-          v-for="item in list"
-          :key="item._id"
-          class="rest-box"
-        >
-          <rest-item :item="item"></rest-item>
+        <!-- 循环输出各个餐馆 按奇偶数分两列 -->
+        <div>
+          <rest-item
+            v-for="item in splitColumns.leftColumn"
+            :key="item._id"
+            :item="item"
+          ></rest-item>
+        </div>
+        <div class="rightColumn">
+          <rest-item
+            v-for="item in splitColumns.rightColumn"
+            :key="item._id"
+            :item="item"
+          ></rest-item>
         </div>
       </div>
     </div>
@@ -19,12 +27,14 @@
 </template>
 
 <script>
-// import restItem from '@/components/RestaurantItem/RestaurantItem';
+import _ from 'lodash';
+import moment from 'moment-timezone';
+import restItem from '@/components/RestaurantItem/RestaurantItem';
 import { mapActions,mapState } from 'vuex';
 export default {
    name:'Restaurant',
    components: {
-      // restItem
+      restItem
    },
    data () {
       return {
@@ -35,6 +45,22 @@ export default {
       ...mapState({
          'list': state => state.restaurant.restList
       }),
+      /* 按奇偶数分两列 */
+      splitColumns (){
+         const leftColumn = [];
+         const rightColumn = [];
+         _.forEach(this.list,(item,index)=>{
+            if(index % 2 === 0){
+               leftColumn.push(item);
+            }else{
+               rightColumn.push(item);
+            }
+         });
+         return{
+            leftColumn,
+            rightColumn
+         };
+      }
    },
    created () {
       this.setRestList();
@@ -43,6 +69,13 @@ export default {
       ...mapActions([
          'setRestList'
       ]),
+      /* 排序 */
+      sortRestList (list){
+         _.orderBy(list,[ 'featured','zscore' ],[ 'desc','desc' ]);
+         // _.forEach(list,(item)=>{
+
+         // })
+      }
    },
 };
 </script>

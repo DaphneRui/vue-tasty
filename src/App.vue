@@ -3,7 +3,7 @@
     <!-- Header组件 -->
     <Header />
     <!-- modal组件 -->
-    <Modal></Modal>
+    <RegistModal></RegistModal>
     <!-- error组件 -->
     <Error />
     <!-- loading组件 -->
@@ -18,16 +18,16 @@
 <script>
 /* components */
 import Loading from './components/Loading/Loading';
-import Modal from './components/Modal/Modal';
+import RegistModal from './components/RegistModal/RegistModal';
 import Header from './components/Header/Header';
-import Error from './components/errorModal/errorModal';
+import Error from './components/ErrorModal/errorModal';
 export default {
    name:'App',
    components: {
       Loading,
       Header,
       Error,
-      Modal
+      RegistModal
    }
 };
 </script>
@@ -38,7 +38,7 @@ export default {
    margin : 0;
 }
 .App{
-//   width : 1440px;
+  width : 1440px;
   padding : 0 120px;
   margin : auto;
 // background-color : #f7f7f7;
@@ -48,6 +48,9 @@ export default {
   top : 100px;
   display : flex;
   width : 100%;
+}
+.test{
+  border : 1px solid #000;
 }
 // .test{
 //   border : 1px solid #000;

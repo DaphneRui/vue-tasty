@@ -1,35 +1,15 @@
 <template>
   <div class="restaurantImage">
-    <div class="rest-box1">
-      <div class="rest-food-name"></div>
-      <div class="rest-image-box">
-        <img
-          src="../../assets/dark-dish.png"
-          alt=""
-          class="dish-image"
-        >
-      </div>
-    </div>
-    <div class="rest-box2">
-      <div class="rest-food-name"></div>
-      <div class="rest-image-box">
-        <img
-          src="../../assets/dark-dish.png"
-          alt=""
-          class="dish-image"
-        >
-      </div>
-    </div>
-    <div class="rest-box3">
-      <div class="rest-food-name"></div>
-      <div class="rest-image-box">
-        <img
-          src="../../assets/dark-dish.png"
-          alt=""
-          class="dish-image"
-        >
-      </div>
-    </div>
+    <img
+      src="../../assets/dark-dish.png"
+      alt=""
+      class="dish-image"
+    >
+    <img
+      :src="item"
+      alt=""
+      class="food-image"
+    >
   </div>
 </template>
 
@@ -39,10 +19,10 @@ export default {
    name:'RestaurantImage',
    props: {
       item: {
-         type: Object,
+         type: String,
          require: true,
          default (){
-            return {};
+            return '';
          }
       }
    },
