@@ -1,0 +1,101 @@
+.restaurantImage{
+    .rest-box1{
+        width : 65.2%;
+        cursor : pointer;
+        .rest-food-name{
+            width : 100%;
+            height : auto;
+            font-size : 14px;
+            font-weight : 400;
+            line-height : 1;
+            color : #afafaf;
+            text-align : center;
+            cursor : pointer;
+            opacity : 1;
+        }
+        .rest-image-box{
+            position : relative;
+            margin-top : 10px;
+            .dish-image {
+                position : absolute;
+                z-index : 1;
+                width : 100%;
+            }
+            .food-image {
+                position : absolute;
+                z-index : 2;
+                width : 100%;
+            }
+        }
+
+    }
+    .rest-box2{
+        position : absolute;
+        top : 140px;
+        left : 45.6%;
+        width : 40.9%;
+        cursor : pointer;
+        .rest-food-name{
+            width : 100%;
+            height : auto;
+            font-size : 14px;
+            font-weight : 400;
+            line-height : 1;
+            color : #afafaf;
+            text-align : center;
+            cursor : pointer;
+            opacity : 1;
+        }
+        .rest-image-box{
+            position : relative;
+            margin-top : 10px;
+            .dish-image {
+                position : absolute;
+                z-index : 1;
+                width : 100%;
+            }
+            .food-image {
+                position : absolute;
+                z-index : 2;
+                width : 100%;
+            }
+        }
+
+    }
+
+    .rest-box3{
+        position : relative;
+        top : 190px;
+        left : 22px;
+        width : 32.6%;
+        cursor : pointer;
+        .rest-food-name{
+            width : 100%;
+            height : auto;
+            font-size : 14px;
+            font-weight : 400;
+            line-height : 1;
+            color : #afafaf;
+            text-align : center;
+            cursor : pointer;
+            opacity : 1;
+        }
+        .rest-image-box{
+            position : relative;
+            margin-top : 10px;
+            .dish-image {
+                position : absolute;
+                z-index : 1;
+                width : 100%;
+            }
+            .food-image {
+                position : absolute;
+                z-index : 2;
+                width : 100%;
+            }
+        }
+
+    }
+
+    
+}

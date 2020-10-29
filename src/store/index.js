@@ -9,6 +9,7 @@ import language from './language';
 /* page */
 import order from '@/views/Order/module/index';
 import login from '@/views/Login/module/index';
+import menu from '@/views/Menu/module/index';
 import restaurant from '@/views/Restaurant/module/index';
 
 Vue.use(Vuex);
@@ -24,6 +25,7 @@ export default new Vuex.Store({
       loading,
       order,
       error,
+      menu,
       login,
       language,
       restaurant
