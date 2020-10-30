@@ -16,7 +16,8 @@ const routes = [
       component: () => import('../views/Login/Login.vue'),
       /* 在进入login页面之前判断localstorage里面是否存有用户信息，如果有，则直接跳转到restaurant页面，如果没有，则正常跳转 */
       beforeEnter: (to, from, next) => {
-         if(!_.isEmpty(_.get(getStorage('userInfo'),'token'))) {
+
+         if(_.get(getStorage('userInfo'),'token')) {
             next({
                path:'/restaurant'
             });
@@ -28,6 +29,7 @@ const routes = [
    {
       path: '/menu/:id',
       name: 'Menu',
+      meta:{ requireLogin:false },
       component: () => import('../views/Menu/Menu.vue')
    },
    {
@@ -40,6 +42,7 @@ const routes = [
    {
       path: '/restaurant',
       name: 'Restaurant',
+      meta:{ requireLogin:false },
       component: () => import('../views/Restaurant/Restaurant.vue')
    },
 ];
@@ -57,12 +60,19 @@ router.beforeEach((to, from, next) => {
    // to and from are both route objects. must call `next`.
    console.log(to);
    const requireLogin = to.meta.requireLogin;
+
+   if(to.path === '/login'){
+      console.log('in====>');
+      next();
+   }
+
    if(!requireLogin){
       /* 不需要登录，正常跳转 */
       next();
    }else{
       /* 需要检测是否登录 */
-      if(!_.isEmpty(_.get(getStorage('userInfo')),'token')){
+      console.log('else');
+      if(_.get(getStorage('userInfo'),'token')){
          /* 未登录，跳转到restaurant页面 */
          next({
             path:'/restaurant'

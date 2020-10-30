@@ -34,14 +34,16 @@
       </button>
 
       <!-- 历史订单 -->
-      <button class="down-order">
+      <button
+        v-show="showHistory"
+        class="down-order"
+      >
         {{ $t('order.title') }}
       </button>
 
       <!-- 切换中英文 -->
       <div class="down-language">
         <button
-          v-show="showHistory"
           :class="$i18n.locale == 'zh-CN' ? 'on-choose' : ''"
           @click="changeLang('zh-CN')"
         >
@@ -59,7 +61,6 @@
       <button
         v-show="showLogout"
         class="down-logout"
-        @click="logout"
       >
         {{ $t('logout') }}
       </button>
@@ -74,9 +75,9 @@ export default {
    data () {
       return {
          showDown: false,
-         showLogin:false,
-         showLogout:false,
-         showHistory:false
+         showLogin:true,
+         showLogout:true,
+         showHistory:true
       };
    },
    computed:{
@@ -113,12 +114,12 @@ export default {
       jumpToLogin (){
          this.$router.push('/login');
       },
-      logout (){
-         if(this.$route.path === '/order'){
-            this.showLogin = true;
-            this.showLogout = false;
-         }
-      }
+      // logout (){
+      //    if(this.$route.path === '/order'){
+      //       this.showLogin = true;
+      //       this.showLogout = false;
+      //    }
+      // }
    }
 
 };
