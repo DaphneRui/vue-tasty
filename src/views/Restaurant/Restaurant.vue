@@ -78,12 +78,14 @@ export default {
          const openedRestaurant = [];
          const closedRestaurant = [];
          _.forEach(restList,(item)=>{
+
             if(this.checkRestaurantClosed(item)){
                openedRestaurant.push(item);
             }else{
                closedRestaurant.push(item);
             }
          });
+
          return _.concat(openedRestaurant, closedRestaurant);
 
       },
@@ -93,10 +95,10 @@ export default {
          const date = new Date();
          /* 纽约时间 */
          const timezone = _.get(restaurant, 'timezone');
-         const currentTime = moment.tz(date, timezone)._d;
-         const newYorkTime = currentTime.getHours() * 60 + currentTime.getMinutes();
+         const currentTime = moment.tz(date, timezone);
+         const newYorkTime = currentTime.hours() * 60 + currentTime.minutes();
          /* 星期几 */
-         const currentWeek = currentTime.getDay();
+         const currentWeek = currentTime.day();
          /* 营业时间 */
          const index = currentWeek - 1;
          const bankingHour = _.get(restaurant,`hours[${index}]`);
