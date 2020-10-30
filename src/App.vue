@@ -20,7 +20,7 @@
 import Loading from './components/Loading/Loading';
 import RegistModal from './components/RegistModal/RegistModal';
 import Header from './components/Header/Header';
-import Error from './components/errorModal/errorModal';
+import Error from './components/ErrorModal/errorModal';
 export default {
    name:'App',
    components: {
@@ -44,15 +44,15 @@ export default {
 // background-color : #f7f7f7;
 }
 .main-content{
-  // display : flex;
-  // align-items : center;
-  // justify-content : center;
-  // width : 100%;
-  // height : calc(100vh - 45px);
   position : relative;
   top : 100px;
+  display : flex;
+  width : 100%;
 }
 .test{
   border : 1px solid #000;
 }
+// .test{
+//   border : 1px solid #000;
+// }
 </style>

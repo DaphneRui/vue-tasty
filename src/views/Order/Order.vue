@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-main">
     <!-- <button
       class="order-btn"
       @click="click"
@@ -18,18 +18,23 @@
         v-for="item in list"
         :key="item._id"
       >
-        {{ $t('order.more') }}
+        <OrderItem :item="item"></OrderItem>
+        <!-- {{ $t('order.more') }} -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import OrderItem from '../../components/OrderItem/OrderItem';
 import { mapActions,mapState } from 'vuex';
 import './order.scss';
 /* eslint-disable */
 export default {
    name:'Order',
+   components:{
+     OrderItem
+   },
    data () {
       return {
 

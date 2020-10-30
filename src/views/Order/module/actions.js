@@ -11,7 +11,7 @@ const actions = {
          //  const userId = _.get(getStorage('user'),id);
          const list = await loadOrder();
          commit(types.LOAD_ORDER,list );
-         console.log('======>list',list);
+         console.log('actions======>list',list);
       } catch (error) {
          commit(types.LOAD_ORDER,{ message: error.message });
       }finally{

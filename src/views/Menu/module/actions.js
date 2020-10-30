@@ -5,13 +5,16 @@ const actions = {
 
    async getMenu ({ commit }){
 
-      const   data   = await getMenuReq();
+      try{
 
-      // console.log( 'data===>', data  );
+         const   data   = await getMenuReq();
+         commit(types.SET_MENU,data );
 
-      commit(types.SET_MENU,data );
+      }catch(error){
 
-      // console.log(data);
+         commit(types.SET_MENU,{ message: error.message } );
+      }
+
    }
 };
 
