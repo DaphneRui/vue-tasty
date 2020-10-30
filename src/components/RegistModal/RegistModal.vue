@@ -36,7 +36,7 @@
         </div>
         <div>
           <input
-            v-model="checkPassword"
+            v-model="checkPass"
             type="password"
             class="input"
           >
@@ -45,7 +45,7 @@
       <div class="container-col vertical space-between sign-up-btn-box">
         <button
           class="normal-btn login-btn"
-          @click="showError"
+          @click="handleRegist"
         >
           {{ $t('login.signUp') }}
         </button>
@@ -56,22 +56,33 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { encode } from '../../common/utils';
+import { checkName,checkPassword } from '../../common/utils';
+
 export default {
    name:'RegistModal',
    data () {
       return {
          regUsername:'',
          regPassword:'',
-         checkPassword:'',
+         checkPass:'',
       };
    },
    methods:{
       ...mapActions([ 'regist' ]),
       /* 通过vue-js-modal显示error框的显示 */
-      showError (){
-
-         this.regist({ username:encode(this.regUsername),password:encode(this.regPassword) });
+      handleRegist (){
+         if(!checkName(this.regUsername)){
+            this.$modal.show('error',{ message:this.$t('login.error.name') });
+         }
+         if(!checkPassword(this.regPassword)){
+            this.$modal.show('error',{ message:this.$t('login.error.password') });
+            this.regPassword = '';
+            this.checkPass = '';
+         }
+         if(this.checkPass != this.regPassword){
+            this.$modal.show('error',{ message:this.$t('login.error.comfirmPassword') });
+         }
+         this.regist({ username:this.regUsername,password:this.regPassword });
       }
    }
 };
