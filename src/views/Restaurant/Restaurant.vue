@@ -47,9 +47,10 @@ export default {
       }),
       /* 按奇偶数分两列 */
       splitColumns (){
+         const restList = this.sortRestList(this.list);
          const leftColumn = [];
          const rightColumn = [];
-         _.forEach(this.list,(item,index)=>{
+         _.forEach(restList,(item,index)=>{
             if(index % 2 === 0){
                leftColumn.push(item);
             }else{
@@ -71,11 +72,51 @@ export default {
       ]),
       /* 排序 */
       sortRestList (list){
-         _.orderBy(list,[ 'featured','zscore' ],[ 'desc','desc' ]);
-         // _.forEach(list,(item)=>{
+         /* 根据开优先推荐,喜爱度排序 */
+         const restList =  _.orderBy(list,[ 'featured','zscore' ],[ 'desc','desc' ]);
+         /* 根据开关门排序 */
+         const openedRestaurant = [];
+         const closedRestaurant = [];
+         _.forEach(restList,(item)=>{
+            if(this.checkRestaurantClosed(item)){
+               openedRestaurant.push(item);
+            }else{
+               closedRestaurant.push(item);
+            }
+         });
+         return _.concat(openedRestaurant, closedRestaurant);
 
-         // })
+      },
+
+      /* 验证餐馆是否关闭 */
+      checkRestaurantClosed (restaurant){
+         const date = new Date();
+         /* 纽约时间 */
+         const timezone = _.get(restaurant, 'timezone');
+         const currentTime = moment.tz(date, timezone)._d;
+         const newYorkTime = currentTime.getHours() * 60 + currentTime.getMinutes();
+         /* 星期几 */
+         const currentWeek = currentTime.getDay();
+         /* 营业时间 */
+         const index = currentWeek - 1;
+         const bankingHour = _.get(restaurant,`hours[${index}]`);
+         /* 开始时间 */
+         const startHour = _.get(bankingHour, 'start');
+         /* 结束时间 */
+         const endHour = _.get(bankingHour, 'end');
+         /* 是否在营业时间 */
+         if (newYorkTime > endHour || newYorkTime < startHour) {
+            return false;
+         }
+         /* 是否人为关闭 */
+         const closed = _.get(restaurant, 'closed', null);
+         if (closed !== null) {
+            return false;
+         }
+         return true;
+
       }
+
    },
 };
 </script>
