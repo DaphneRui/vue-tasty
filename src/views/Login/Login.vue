@@ -46,8 +46,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-/* 引入加密函数 */
-import { encode } from '../../common/utils';
+import { checkName,checkPassword } from '../../common/utils';
 
 export default {
    name:'Login',
@@ -61,12 +60,13 @@ export default {
       ...mapActions([ 'login' ]),
       /* 点击登录按钮之后把用户输入的数据加密之后存入vuex */
       handleLogin (){
-         //  if(this.username){
-         this.username = encode(this.username);
-         //  }else{
-         //  this.$modal.show('error');
-         //  }
-         this.password = encode(this.password);
+         if(!checkName(this.username)){
+            this.$modal.show('error',{ message:this.$t('login.error.name') });
+         }
+         if(!checkPassword(this.password)){
+            this.$modal.show('error',{ message:this.$t('login.error.password') });
+            this.password = '';
+         }
          this.login({ username:this.username,password:this.password });
       },
       /* vue-js-modal实现registmodal的显示 */

@@ -1,9 +1,10 @@
 import * as types from '../../../store/mutation-type';
 
-const mutaitions = {
+const mutations = {
    [types.REGIST_USERINFO] (state,data){
       state.user = data;
+      console.log('regist state',state);
    }
 };
 
-export default mutaitions;
+export default mutations;

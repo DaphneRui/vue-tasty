@@ -20,7 +20,7 @@
 import Loading from './components/Loading/Loading';
 import RegistModal from './components/RegistModal/RegistModal';
 import Header from './components/Header/Header';
-import Error from './components/ErrorModal/errorModal';
+import Error from './components/ErrorModal/ErrorModal';
 export default {
    name:'App',
    components: {
@@ -41,7 +41,7 @@ export default {
   width : 1440px;
   padding : 0 120px;
   margin : auto;
-// background-color : #f7f7f7;
+  background-color : #f7f7f7;
 }
 .main-content{
   position : relative;
