@@ -5,6 +5,7 @@
       <img
         src="../../assets/logo.png"
         alt=""
+        @click="jumpToRestaurant"
       >
     </div>
 
@@ -24,18 +25,23 @@
       class="header-right-down"
     >
       <!-- 登录 -->
-      <button class="down-login">
+      <button
+        v-show="showLogin"
+        class="down-login"
+        @click="jumpToLogin"
+      >
         {{ $t('login.login') }}
       </button>
 
       <!-- 历史订单 -->
-      <!-- <button class="down-order">
+      <button class="down-order">
         {{ $t('order.title') }}
-      </button> -->
+      </button>
 
       <!-- 切换中英文 -->
       <div class="down-language">
         <button
+          v-show="showHistory"
           :class="$i18n.locale == 'zh-CN' ? 'on-choose' : ''"
           @click="changeLang('zh-CN')"
         >
@@ -50,9 +56,13 @@
       </div>
 
       <!-- 登出 -->
-      <!-- <button class="down-logout">
+      <button
+        v-show="showLogout"
+        class="down-logout"
+        @click="logout"
+      >
         {{ $t('logout') }}
-      </button> -->
+      </button>
     </div>
   </div>
 </template>
@@ -63,7 +73,10 @@ export default {
    name: 'Header',
    data () {
       return {
-         showDown: false
+         showDown: false,
+         showLogin:false,
+         showLogout:false,
+         showHistory:false
       };
    },
    computed:{
@@ -93,6 +106,18 @@ export default {
       changeLang (lang) {
          this.$i18n.locale = lang;
          this.setLanguage(lang);
+      },
+      jumpToRestaurant (){
+         this.$router.push('/restaurant');
+      },
+      jumpToLogin (){
+         this.$router.push('/login');
+      },
+      logout (){
+         if(this.$route.path === '/order'){
+            this.showLogin = true;
+            this.showLogout = false;
+         }
       }
    }
 

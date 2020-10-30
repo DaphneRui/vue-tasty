@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import _ from 'lodash';
+import { getStorage } from '../common/utils';
 Vue.use(VueRouter);
 
 const routes = [
@@ -11,7 +13,17 @@ const routes = [
    {
       path: '/login',
       name: 'Login',
-      component: () => import('../views/Login/Login.vue')
+      component: () => import('../views/Login/Login.vue'),
+      /* 在进入login页面之前判断localstorage里面是否存有用户信息，如果有，则直接跳转到restaurant页面，如果没有，则正常跳转 */
+      beforeEnter: (to, from, next) => {
+         if(!_.isEmpty(_.get(getStorage('userInfo'),'token'))) {
+            next({
+               path:'/restaurant'
+            });
+         }else{
+            next();
+         }
+      }
    },
    {
       path: '/menu/:id',
@@ -21,6 +33,8 @@ const routes = [
    {
       path: '/order',
       name: 'Order',
+      /* 传入参数，表示进入这个页面之前是一定要登录的 */
+      meta:{ requireLogin:true },
       component: () => import('../views/Order/Order.vue')
    },
    {
@@ -37,3 +51,22 @@ const router = new VueRouter({
 });
 
 export default router;
+
+/* 路由守卫，进行登录态检测 */
+router.beforeEach((to, from, next) => {
+   // to and from are both route objects. must call `next`.
+   console.log(to);
+   const requireLogin = to.meta.requireLogin;
+   if(!requireLogin){
+      /* 不需要登录，正常跳转 */
+      next();
+   }else{
+      /* 需要检测是否登录 */
+      if(!_.isEmpty(_.get(getStorage('userInfo')),'token')){
+         /* 未登录，跳转到restaurant页面 */
+         next({
+            path:'/restaurant'
+         });
+      }
+   }
+});
