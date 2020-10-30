@@ -41,7 +41,7 @@ export default {
   width : 1440px;
   padding : 0 120px;
   margin : auto;
-// background-color : #f7f7f7;
+  background-color : #f7f7f7;
 }
 .main-content{
   position : relative;
