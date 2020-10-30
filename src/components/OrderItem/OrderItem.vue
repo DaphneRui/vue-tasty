@@ -110,7 +110,7 @@ export default {
    },
    methods: {
       // 点击更多按钮 改变order的样式
-      ChangeMore (e){
+      ChangeMore (){
          this.changeStyle = !this.changeStyle
          this.show = !this.show
 

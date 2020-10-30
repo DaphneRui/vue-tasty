@@ -28,7 +28,7 @@
 
 <script>
 import _ from 'lodash';
-import moment from 'moment-timezone';
+// import moment from 'moment-timezone';
 import restItem from '@/components/RestaurantItem/RestaurantItem';
 import { mapActions,mapState } from 'vuex';
 export default {
