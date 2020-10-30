@@ -4,6 +4,11 @@ Vue.use(VueRouter);
 
 const routes = [
    {
+      path: '/',
+      name: '/',
+      redirect:'/restaurant'
+   },
+   {
       path: '/login',
       name: 'Login',
       component: () => import('../views/Login/Login.vue')
