@@ -46,8 +46,8 @@ export default {
 .main-content{
   position : relative;
   top : 100px;
-  display : flex;
-  width : 100%;
+  // display : flex;
+  // width : 100%;
 }
 .test{
   border : 1px solid #000;
