@@ -56,6 +56,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { encode } from '../../common/utils';
 export default {
    name:'RegistModal',
    data () {
@@ -69,7 +70,8 @@ export default {
       ...mapActions([ 'regist' ]),
       /* 通过vue-js-modal显示error框的显示 */
       showError (){
-         this.regist({ regUsername:this.regUsername,regPassword:this.regPassword,checkPassword:this.checkPassword });
+
+         this.regist({ username:encode(this.regUsername),password:encode(this.regPassword) });
       }
    }
 };

@@ -7,7 +7,7 @@
   >
     <div class="error-box">
       <div>
-        {{ $t('login.error.name') }}
+        <!-- {{ $t('login.error.name') }} -->
       </div>
       <div class="container-col vertical space-between error-btn-box">
         <button
