@@ -50,7 +50,7 @@
 
       <div class="container-between order-total">
         <div> {{ $t('menu.total') }} </div>
-        <div> ${{ price/100 }}</div>
+        <div> ${{ totalPrice }}</div>
       </div>
 
       <div class="container-row-center more-btn">
@@ -116,20 +116,28 @@ export default {
           .value();
         console.log(orderItems);
         return orderItems;
-      }
+      },
 
+      // 显示总价
+      totalPrice(){
+        let totalPrice = 0;
+        _.forEach(this.$props.item.cart,(item)=>{
+            totalPrice += item.price / 100;
+        });
+        console.log('totalPrice===>',totalPrice);
+        return totalPrice.toFixed(2);
+      }
     },
 
     methods: {
         // 点击更多按钮 改变order的样式
         ChangeMore (e){
 
-            e.preventDefault();
+            // e.preventDefault();
             this.show = true;
 
             document.addEventListener('mousedown', this.handleOut, true);
 
-            
         },
         handleOut(e){
           const ref = this.$refs.orderBox;
@@ -138,7 +146,6 @@ export default {
             document.removeEventListener('mousedown',this.handleOut,true)
           }
         },
-
     },
     
 };
