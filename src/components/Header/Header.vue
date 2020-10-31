@@ -17,16 +17,18 @@
         src="../../assets/profile-icon.png"
         alt=""
         class="profile"
+        @click="showDiv"
       >
     </div>
     <!-- header-right-down 点击后出现的框体 -->
     <div
       v-show="showDown"
+      ref="proBox"
       class="header-right-down"
     >
       <!-- 登录 -->
       <button
-        v-show="showLogin"
+        v-if="showLogin"
         class="down-login"
         @click="jumpToLogin"
       >
@@ -35,7 +37,7 @@
 
       <!-- 历史订单 -->
       <button
-        v-show="showHistory"
+        v-if="showHistory"
         class="down-order"
       >
         {{ $t('order.title') }}
@@ -59,8 +61,9 @@
 
       <!-- 登出 -->
       <button
-        v-show="showLogout"
+        v-if="showLogout"
         class="down-logout"
+        @click="logout"
       >
         {{ $t('logout') }}
       </button>
@@ -82,27 +85,10 @@ export default {
          showHistory:false
       };
    },
-   created () {
-      this.isShowBtn();
-   },
    computed:{
       ...mapState({
          'lang': state => state.language.lang
       }),
-   },
-   mounted (){
-      /* 点击头像后出现框体,点击其他地方框体消失 */
-      document.addEventListener('click',(e)=>{
-         if(e.target.className === 'profile'){
-            this.showDown = true;
-         }else {
-            this.showDown = false;
-         }
-      });
-      /* 点击框体内部不让框体消失 */
-      document.getElementsByClassName('header-right-down')[0].addEventListener('click',(e)=>{
-         e.stopPropagation();
-      });
    },
    methods:{
       ...mapActions([
@@ -119,26 +105,50 @@ export default {
       jumpToLogin (){
          this.$router.push('/login');
       },
-      // logout (){
-      //    if(this.$route.path === '/order'){
-      //       this.showLogin = true;
-      //       this.showLogout = false;
-      //    }
-      // }
-      isShowBtn (){
+      logout (){
+         if(this.$route.path === '/order'){
+            this.showLogin = true;
+            this.showLogout = false;
+         }
+      },
+      showDiv (){
+         this.showDown = true;
+         document.addEventListener('mousedown',this.clickListener);
+
+         console.log(_.get(getStorage('userInfo'),'token'));
          if(_.get(getStorage('userInfo'),'token')){
             if(this.$route.path === '/order'){
                this.showLogout = true;
+               this.showLogin = false;
+               //  this.showHistory = false;
             }else{
                this.showHistory = true;
                this.showLogout = true;
+               this.showLogin = false;
             }
          }else{
             if(this.$route.path !== '/login'){
                this.showLogin = true;
             }
          }
-      }
+      },
+      clickListener (e){
+
+         const ref = this.$refs.proBox;
+
+         if(ref && ref.contains(e.target)){
+            // this.showDown = true;
+            console.log(123);
+         }else {
+            this.showDown = false;
+            document.removeEventListener('mousedown',this.clickListener,true);
+         }
+      },
+      // isShowBtn (){
+
+      //    console.log('this.$router.currentRoute.path===>',this.$router.currentRoute.path);
+
+      // }
    }
 
 };
