@@ -1,7 +1,42 @@
 <template>
   <div class="cart">
+    <div>
+      <button
+        v-if="isShow"
+        class="menu-cart-closed"
+      >
+        <img
+          class="menu-cart-closed-btn cursor"
+          src="@/assets/close_btn.png"
+          @click="expand"
+        />
+      </button>
+    </div>
     <div
-      class="cart-container"
+      v-show="isShow"
+      class="cart-left-container"
+    >
+      <!-- 131133131 -->
+      <div class="container-col">
+        <div class="container-row-center">
+          <img src="@/assets/logo.png" />
+        </div>
+        <div class="container-row-align">
+          <div class="menu-cart-payment-input">
+            <select
+              value="payment"
+              options="payments"
+            >
+              <option>weChat</option>
+              <option>ApplePay</option>
+              <option>支付宝</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      :class="[isShow?'cart-expend':'cart-container']"
     >
       <div
         class="cart-content"
@@ -24,12 +59,27 @@
         </div>
       </div>
       <div>
+        <div
+          v-show="isShow"
+          class="container-between menu-cart-total"
+        >
+          <div>总价：</div>
+          <div>{{ totalPrice | Money }}</div>
+        </div>
         <button
+          v-if="isShow == false"
           class="cart-totalBtn"
           :disabled="cartItem.length === 0"
           :hover="cartItem.length > 0"
+          @click="submit"
         >
           {{ totalPrice | Money }}
+        </button>
+        <button
+          v-else
+          class="cart-totalBtn-style"
+        >
+          确认下单
         </button>
       </div>
     </div>
@@ -57,7 +107,7 @@ export default {
    },
    data () {
       return {
-
+         isShow:false,
       };
    },
    computed: {
@@ -87,6 +137,14 @@ export default {
    },
    created () {
       // console.log('cart',this.cart);
+   },
+   methods: {
+      submit (){
+         this.isShow = true;
+      },
+      expand (){
+         this.isShow = false;
+      }
    },
 };
 </script>
