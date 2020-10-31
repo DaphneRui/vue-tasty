@@ -1,51 +1,161 @@
 <template>
   <div class="cart">
-    <div class="cart-container">
-      <div class="cart-text">
-        <div class="cart-empty-text">
-          选择加入购物车
+    <div>
+      <button
+        v-if="isShow"
+        class="menu-cart-closed"
+      >
+        <img
+          class="menu-cart-closed-btn cursor"
+          src="@/assets/close_btn.png"
+          @click="expand"
+        />
+      </button>
+    </div>
+    <div
+      v-show="isShow"
+      class="cart-left-container"
+    >
+      <!-- 131133131 -->
+      <div class="container-col">
+        <div class="container-row-center">
+          <img src="@/assets/logo.png" />
+        </div>
+        <div class="container-row-align">
+          <div class="menu-cart-payment-input">
+            <select
+              value="payment"
+              options="payments"
+            >
+              <option>weChat</option>
+              <option>ApplePay</option>
+              <option>支付宝</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      :class="[isShow?'cart-expend':'cart-container']"
+    >
+      <div
+        class="cart-content"
+      >
+        <!-- 购物车空 -->
+        <div
+          v-if="cartItem.length === 0"
+          class="cart-empty-text"
+        >
+          {{ $t('menu.cartTitle') }}
+        </div>
+
+        <!-- 购物车数据 -->
+        <div v-if="cartItem.length > 0">
+          <CartItem
+            v-for=" item in cartItem"
+            :key="item._id"
+            :item="item"
+          />
         </div>
       </div>
       <div>
-        <button
-          class="cart-subtotal-btn"
-          disabled=""
+        <div
+          v-show="isShow"
+          class="container-between menu-cart-total"
         >
-          $0.00
+          <div>总价：</div>
+          <div>{{ totalPrice | Money }}</div>
+        </div>
+        <button
+          v-if="isShow == false"
+          class="cart-totalBtn"
+          :disabled="cartItem.length === 0"
+          :hover="cartItem.length > 0"
+          @click="submit"
+        >
+          {{ totalPrice | Money }}
+        </button>
+        <button
+          v-else
+          class="cart-totalBtn-style"
+        >
+          确认下单
         </button>
       </div>
     </div>
-    <!-- <button>
-      <img
-        src="@/assets/close_btn.png"
-        alt=""
-      >
-    </button>
-    <div class="cart-container">
-      <div class="cart-left">
-        <div class="left-container">
-          <div class="left-center">
-            <img
-              src="@/assets/logo.png"
-              alt=""
-            >
-          </div>
-          <div class="left-align">
-            <div class="payment-input">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cart-right"></div>
-    </div> -->
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import './cart.scss';
+import _ from 'lodash';
+/* components */
+import CartItem from '@/components/CartItem/CartItem';
 
 export default {
    name:'Cart',
-
+   components:{
+      CartItem
+   },
+   /* 菜品价格 */
+   filters:{
+      Money: function (value){
+         value = (value / 100).toFixed(2);
+         return '$' + value;
+      }
+   },
+   data () {
+      return {
+         isShow:false,
+      };
+   },
+   computed: {
+      ...mapState({
+         'lang':state=>state.language.lang,
+         'cart':state=>state.cart.cart
+      }),
+      cartItem (){
+         /* 购物车为空 */
+         if(_.isEmpty(this.cart)){
+            return [];
+         }
+         /* 获取购物车数据 */
+         const groupCart = _.groupBy(this.cart, (item) => item._id);
+         return _.toArray(groupCart);
+      },
+      /* 总价 */
+      totalPrice (){
+         let price = 0;
+         if (!_.isEmpty(this.cart)) {
+            _.forEach(this.cart, (item) => {
+               price += item.price;
+            });
+         }
+         return price;
+      }
+   },
+<<<<<<< HEAD
+   created () {
+      // console.log('cart',this.cart);
+   },
+   methods: {
+      submit (){
+         this.isShow = true;
+      },
+      expand (){
+         this.isShow = false;
+      }
+   },
+=======
+   //  methods: {
+   //     ...mapActions([
+   //        'orderFood'
+   //     ]),
+   //     confirmOrder (){
+   //        this.orderFood();
+   //     }
+   //  }
+>>>>>>> a0ad08988aa7fcececf5213ad038c03d6d4bc43c
 };
 </script>

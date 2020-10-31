@@ -30,7 +30,7 @@
       />
     </div>
     <div class="menu-cart">
-      <div class="menu-cart-container">
+      <div>
         <Cart />
       </div>
     </div>
@@ -40,7 +40,8 @@
 <script>
 import './Menu.scss';
 import _ from 'lodash';
-import { getStorage } from '@/common/utils.js';
+import { setStorage,getStorage } from '@/common/utils.js';
+import * as types from '@/store/mutation-type';
 import { mapActions,mapState } from 'vuex';
 import menuItem from '@/components/MenuCom/MenuCom';
 import Cart from '@/components/Cart/Cart';
@@ -102,6 +103,13 @@ export default {
    created (){
       /* 根据餐馆名获取 menu */
       this.getMenu({ restaurantId:this.$route.params.id });
+
+      /* 进入新餐馆，删除购物车 */
+      const cartId = getStorage('cartId');
+      if(cartId !== this.$route.params.id){
+         setStorage('cart',[]);
+         this.$store.commit(types.CLEAR_CART);
+      }
    },
 
    methods:{
