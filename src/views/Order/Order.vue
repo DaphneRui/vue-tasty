@@ -1,11 +1,5 @@
 <template>
   <div class="order-main">
-    <!-- <button
-      class="order-btn"
-      @click="click"
-    >
-      click
-    </button> -->
     <div class="order-container">
       <div class="order-tab">
         <div class="order-tab-fixed">
