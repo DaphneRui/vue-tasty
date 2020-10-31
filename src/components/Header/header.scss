@@ -88,15 +88,3 @@
         }
     }
 }
-
-/* 动态增加类，控制某些框的显示和消失 */
-
-.down-logout,.down-order{
-    display : none;
-}
-.btn-hide{
-    display : none;
-}
-.btn-show{
-    display : block;
-}

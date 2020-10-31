@@ -73,6 +73,7 @@
       "error":{
         "need-login":"Please log in first.",
         "error.user-duplicate":"Duplicate username",
-        "auth-failed":"Please login again."
+        "auth-failed":"Please login again.",
+        "No user":"No user"
       }
 }

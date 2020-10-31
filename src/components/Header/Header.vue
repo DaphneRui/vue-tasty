@@ -70,15 +70,20 @@
 
 <script>
 import { mapState,mapActions } from 'vuex';
+import { getStorage } from '../../common/utils';
+import _ from 'lodash';
 export default {
    name: 'Header',
    data () {
       return {
          showDown: false,
-         showLogin:true,
-         showLogout:true,
-         showHistory:true
+         showLogin:false,
+         showLogout:false,
+         showHistory:false
       };
+   },
+   created () {
+      this.isShowBtn();
    },
    computed:{
       ...mapState({
@@ -120,6 +125,20 @@ export default {
       //       this.showLogout = false;
       //    }
       // }
+      isShowBtn (){
+         if(_.get(getStorage('userInfo'),'token')){
+            if(this.$route.path === '/order'){
+               this.showLogout = true;
+            }else{
+               this.showHistory = true;
+               this.showLogout = true;
+            }
+         }else{
+            if(this.$route.path !== '/login'){
+               this.showLogin = true;
+            }
+         }
+      }
    }
 
 };
