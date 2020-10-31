@@ -9,7 +9,6 @@ export async function menu ({ restaurantId }) {
       method:'get',
 
    });
-   console.log('请求==>',result);
 
    return result;
 }

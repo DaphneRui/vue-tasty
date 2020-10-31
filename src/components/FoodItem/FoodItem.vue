@@ -77,7 +77,6 @@ export default {
          return length;
       }
    },
-
    methods: {
       ...mapActions([
          'addCart'
@@ -87,7 +86,7 @@ export default {
          if(!this.$props.item.available){
             return false;
          }
-         this.addCart({ food: this.$props.item });
+         this.addCart({ food: this.$props.item,cartId:this.$route.params.id });
       }
    },
 

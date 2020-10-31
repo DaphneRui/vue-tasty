@@ -18,7 +18,8 @@ const fetch = (options) => {
 
    // const token = _.get(getStorage('user'), '_id');
    // const token = _.get(getStorage('user'), 'token');
-   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVwZGF0ZWRBdCI6IjIwMjAtMTAtMjJUMTE6MDQ6MzQuOTIyWiIsIl9pZCI6IjVmOTNlZDY3NzU2ZTNmNzZhN2E3M2EzZiIsInVzZXJuYW1lIjoibGFsYWxhIiwicGFzc3dvcmQiOiIkMmIkMTAkUUlnWS9acUtZaTU3djFiUFlQZy9NTzJmdnJoOEVCNXMwdnJKZXNWZ3Vsd0Fua2NNU0JNSksiLCJuaWNrbmFtZSI6IiIsImNyZWF0ZWRBdCI6IjIwMjAtMTAtMjRUMDk6MDE6MjcuMjY4WiIsIl9fdiI6MH0sImlhdCI6MTYwMzg1MDcwMSwiZXhwIjoxNjA0MTA5OTAxfQ.L1lgu19LYXPDrnqe0pTV2iW4O0oepXOalrY96HOT4SE';
+
+   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVwZGF0ZWRBdCI6IjIwMjAtMDEtMTdUMTE6NDM6NDQuNDU5WiIsIl9pZCI6IjVlMjE5ZTBhYTI3NGVmNTM3NjA5ZmU4NiIsInVzZXJuYW1lIjoiaXNlbiIsInBhc3N3b3JkIjoiJDJiJDEwJGptR1JHOEJRMi41UnJ6SXFxQk1jcS5yY2V4NWIvRzVBQzZLbnBTdG5HM3lSczBhVlBldnJHIiwibmlja25hbWUiOiIiLCJjcmVhdGVkQXQiOiIyMDIwLTAxLTE3VDExOjQ0OjEwLjcwOFoiLCJfX3YiOjB9LCJpYXQiOjE2MDQxMzY2MjMsImV4cCI6MTYwNDM5NTgyM30.iyDdvw8R8RFd1HrxqL6fIijdt879rRuLnWaWgrjqJyo';
 
    if (token) {
       headers.Authorization = `${token}`;
