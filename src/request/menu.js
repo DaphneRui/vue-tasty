@@ -1,10 +1,11 @@
 import request from '../common/request';
+import { host } from '../common/config';
 
-export async function getMenu () {
+export async function menu ({ restaurantId }) {
 
    const result = await request({
 
-      url:'http://49.235.98.65:8889/menu/restaurantId/59879867376b1e0011183f83',
+      url:`${host}menu/restaurantId/${ restaurantId }`,
       method:'get',
 
    });

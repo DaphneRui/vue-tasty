@@ -1,8 +1,8 @@
 import * as types from './mutation-type';
-
+import { setStorage,getStorage } from '@/common/utils';
 const language = {
    state: {
-      lang: JSON.parse(localStorage.getItem('language')) || 'zh-CN'
+      lang: getStorage('language') || 'zh-CN'
    },
    mutations: {
       [types.SET_LANGUAGE] (state, data) {
@@ -11,7 +11,7 @@ const language = {
    },
    actions: {
       setLanguage ({ commit }, data) {
-         localStorage.setItem('language', JSON.stringify(data));
+         setStorage('language',data);
          commit(types.SET_LANGUAGE, data);
       }
    }
