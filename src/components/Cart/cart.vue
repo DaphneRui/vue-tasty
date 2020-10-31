@@ -2,81 +2,91 @@
   <div class="cart">
     <div
       class="cart-container"
-      :class="{'cart-main-container': isShow}"
     >
-      <div class="cart-text">
+      <div
+        class="cart-content"
+      >
+        <!-- 购物车空 -->
         <div
+          v-if="cartItem.length === 0"
           class="cart-empty-text"
         >
           {{ $t('menu.cartTitle') }}
         </div>
 
-        <!-- 购物车items -->
-        <div>
-          <!-- <CartItem
-            v-for=" item in cartItems"
+        <!-- 购物车数据 -->
+        <div v-if="cartItem.length > 0">
+          <CartItem
+            v-for=" item in cartItem"
             :key="item._id"
-            :items="item"
-          /> -->
+            :item="item"
+          />
         </div>
       </div>
       <div>
         <button
-          class="cart-subtotal-btn"
-          :class="{ 'menu-cart-subtotal-btn-expand':isShow }"
-          disabled=""
+          class="cart-totalBtn"
+          :disabled="cartItem.length === 0"
+          :hover="cartItem.length > 0"
         >
-          $0.00
+          {{ totalPrice | Money }}
         </button>
       </div>
     </div>
-    <!-- <button>
-      <img
-        src="@/assets/close_btn.png"
-        alt=""
-      >
-    </button>
-    <div class="cart-container">
-      <div class="cart-left">
-        <div class="left-container">
-          <div class="left-center">
-            <img
-              src="@/assets/logo.png"
-              alt=""
-            >
-          </div>
-          <div class="left-align">
-            <div class="payment-input">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="cart-right"></div>
-    </div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import './cart.scss';
+import _ from 'lodash';
 /* components */
-// import CartItem from './CartItem';
+import CartItem from '@/components/CartItem/CartItem';
 
 export default {
    name:'Cart',
    components:{
-      // CartItem
+      CartItem
+   },
+   /* 菜品价格 */
+   filters:{
+      Money: function (value){
+         value = (value / 100).toFixed(2);
+         return '$' + value;
+      }
    },
    data () {
       return {
-         isShow:false
+
       };
    },
    computed: {
       ...mapState({
-         lang:state=>state.language.lang,
-         cart:state=>state.cart.cart
-      })
+         'lang':state=>state.language.lang,
+         'cart':state=>state.cart.cart
+      }),
+      cartItem (){
+         /* 购物车为空 */
+         if(_.isEmpty(this.cart)){
+            return [];
+         }
+         /* 获取购物车数据 */
+         const groupCart = _.groupBy(this.cart, (item) => item._id);
+         return _.toArray(groupCart);
+      },
+      /* 总价 */
+      totalPrice (){
+         let price = 0;
+         if (!_.isEmpty(this.cart)) {
+            _.forEach(this.cart, (item) => {
+               price += item.price;
+            });
+         }
+         return price;
+      }
+   },
+   created () {
+      // console.log('cart',this.cart);
    },
 };
 </script>

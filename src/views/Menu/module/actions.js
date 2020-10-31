@@ -32,28 +32,37 @@ const actions = {
          cart.push(food);
          commit(types.SAVE_CART, { cart });
          setStorage('cart',cart);
-         console.log(cart);
       }catch(error){
-         // commit(types.SAVE_CART,{ message: error.message } );
+         this._vm.$modal.show('error',{ message:error.message });
       }finally{
          commit(types.HIDE_LOADING);
       }
 
    },
    /* 删除菜品 */
-   // async removeCart ({ commit },{ food }){
-   //    commit(types.SHOW_LOADING);
-   //    const cart = [];
-   //    try{
-   //       commit(types.SET_CART, { cart });
-   //       getStorage('cart',cart);
-   //    }catch(error){
-   //       // commit(types.SET_CART,{ message: error.message } );
-   //    }finally{
-   //       commit(types.HIDE_LOADING);
-   //    }
+   async removeCart ({ commit },{ food }){
+      commit(types.SHOW_LOADING);
+      let cart = [];
+      try{
+         /* 获取购物车数据 */
+         if (_.isEmpty(getStorage('cart'))) {
+            cart = [];
+         } else {
+            cart = getStorage('cart');
+         }
+         /* 删除 */
+         const index = _.findLastIndex(cart, (item) =>
+            item._id  === food._id);
+         cart.splice(index, 1);
+         commit(types.SAVE_CART, { cart });
+         setStorage('cart',cart);
+      }catch(error){
+         this._vm.$modal.show('error',{ message:error.message });
+      }finally{
+         commit(types.HIDE_LOADING);
+      }
 
-   // },
+   },
 
 };
 
