@@ -1,14 +1,29 @@
 <template>
   <div class="cart">
-    <div class="cart-container">
+    <div
+      class="cart-container"
+      :class="{'cart-main-container': isShow}"
+    >
       <div class="cart-text">
-        <div class="cart-empty-text">
-          选择加入购物车
+        <div
+          class="cart-empty-text"
+        >
+          {{ $t('menu.cartTitle') }}
+        </div>
+
+        <!-- 购物车items -->
+        <div>
+          <!-- <CartItem
+            v-for=" item in cartItems"
+            :key="item._id"
+            :items="item"
+          /> -->
         </div>
       </div>
       <div>
         <button
           class="cart-subtotal-btn"
+          :class="{ 'menu-cart-subtotal-btn-expand':isShow }"
           disabled=""
         >
           $0.00
@@ -42,10 +57,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import './cart.scss';
+/* components */
+// import CartItem from './CartItem';
 
 export default {
    name:'Cart',
-
+   components:{
+      // CartItem
+   },
+   data () {
+      return {
+         isShow:false
+      };
+   },
+   computed: {
+      ...mapState({
+         lang:state=>state.language.lang,
+         cart:state=>state.cart.cart
+      })
+   },
 };
 </script>
