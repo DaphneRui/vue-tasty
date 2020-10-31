@@ -1,43 +1,37 @@
 <template>
   <div class="menu-box">
+    <!-- 餐馆名字 -->
     <div class="titleText">
-      邓记云南过桥米线
+      {{ name }}
     </div>
-    <div class="subTitleText">
-      面类
-    </div>
-    <div
-      class="all-category-box"
-    >
-      <div
-        v-for="(item,id) in renderFoods"
-        :key="id"
-        class="category-box"
-      >
-        <div class="titleText">
-          {{ item.cat.name[`${lang}`] }}
-        </div>
-        <div class="rectangle"></div>
 
-        <div
-          v-for="(obj,index) in item.child"
-          :key="index"
-          class="menu-food-item"
-        >
-          <div class="menu-count">
-            <div class="menu-count-text"></div>
-          </div>
-          <div
-            class="containerBetween"
-          >
-            <div class="menu-text">
-              {{ obj.name[`${lang}`] }}
-            </div>
-            <div class="menu-price">
-              {{ obj.price | Money }}
-            </div>
-          </div>
-        </div>
+    <!-- 餐馆分类 -->
+    <div class="subTitleTexts">
+      <div
+        v-for="(subTitle,index) in subTitleText "
+        :key="index"
+        class="subTitleText"
+      >
+        {{ subTitle }}
+      </div>
+    </div>
+
+    <div class="all-category-box">
+      <!-- 没有菜品 -->
+      <div v-if="renderFoods.length === 0 ">
+        {{ $t('menu.no-menu') }}
+      </div>
+      <!-- 渲染菜品 -->
+      <menu-item
+        v-for="(item,index) in renderFoods"
+        :key="index"
+        :foods="item.foods"
+        :categories="item.categories"
+      />
+    </div>
+    <div class="menu-cart">
+      <div class="menu-cart-container">
+        <Cart />
       </div>
     </div>
   </div>
@@ -46,16 +40,16 @@
 <script>
 import './Menu.scss';
 import _ from 'lodash';
-
+import { getStorage } from '@/common/utils.js';
 import { mapActions,mapState } from 'vuex';
+import menuItem from '@/components/MenuCom/MenuCom';
+import Cart from '@/components/Cart/cart';
 
 export default {
    name:'Menu',
-   filters:{
-      Money: function (value){
-         value = (value / 100).toFixed(2);
-         return '$' + value;
-      }
+   components:{
+      menuItem,
+      Cart
    },
    computed:{
       ...mapState({
@@ -63,73 +57,55 @@ export default {
          'lang': state => state.language.lang,
 
          /* 种类 */
-         categories:state=>state.menu.menuList.categories,
+         'categories':state=>state.menu.menuList.categories,
 
          /* 菜单详情 */
-         foods:state=>state.menu.menuList.foods,
+         'foods':state=>state.menu.menuList.foods,
+      }),
 
-         /* 重构数据 */
-         renderFoods (){
-            let foods = this.foods;
-            let tempArr = [];
-            let Data = [];
+      /* 餐馆名字 */
+      name (){
+         /* 餐馆名字 根据语言变化 */
+         const name = getStorage('restaurant').name;
+         return name[`${this.lang}`];
+      },
 
-            for (let i = 0; i < foods.length; i++){
+      /* 餐馆分类 */
+      subTitleText (){
+         let subTitle = [];
+         /* 遍历tags 根据语言变化 */
+         _.forEach(getStorage('restaurant').tags,(item)=>{
+            subTitle.push(this.$t(`tags.${item}`));
+         });
+         return subTitle;
+      },
 
-               if(tempArr.indexOf(foods[i].category._id) === -1){
+      /* 重构数据 */
+      renderFoods (){
+         const menuList = [];
 
-                  Data.push({
-                     id:foods[i].category._id,
-                     cat:_.first(_.filter(this.categories,(item)=>{
-
-                        return item._id === foods[i].category._id;
-                     })),
-                     child:[ foods[i] ]
-                  });
-                  tempArr.push(foods[i].category._id);
-
-               }else{
-                  for (let j = 0; j < Data.length; j++){
-
-                     if(Data[j].id === foods[i].category._id){
-                        Data[j].child.push(foods[i]);
-                        break;
-                     }
-                  }
-               }
-            }
-            //  _.orderBy(Data.child, [ 'available' ], [ 'desc' ]);
-            let data1 = [];
-            data1 = _.forEach(Data,(item)=>{
-               console.log(item);
-               return  _.orderBy(item.child, [ 'available' ], [ 'desc' ]);
+         _.forEach(this.categories,(item)=>{
+            /* 找到每一个category中对应的所有foods */
+            const categoryId = _.get(item,'_id');
+            const foodList = _.filter(this.foods, { category: { _id: categoryId } });
+            menuList.push({
+               foods: _.orderBy(foodList, [ 'available' ], [ 'desc' ]),
+               categories: item
             });
 
-            // console.log('=======>',Data[0].child[0].available);
-            return data1;
-         },
-         /* 排序 */
-         //  orderByData (){
-         //     _.forEach(this.renderFoods,(obj)=>{
-         //        //  console.log('11111111',obj);
-         //        //  _.orderBy(obj.child,);
-         //        _.orderBy(obj.child, [ 'available' ], [ 'desc' ]);
-         //     });
-         //  }
-      }),
+         });
+         return menuList;
+      },
 
    },
 
    created (){
-      /* 获取 menu */
-      this.getMenu();
-      // this.setRestList();
-
+      /* 根据餐馆名获取 menu */
+      this.getMenu({ restaurantId:this.$route.params.id });
    },
 
    methods:{
-      ...mapActions([ 'getMenu','setRestList' ]),
-
+      ...mapActions([ 'getMenu' ]),
    }
 };
 </script>

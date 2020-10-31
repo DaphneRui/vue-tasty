@@ -11,7 +11,7 @@ import order from '@/views/Order/module/index';
 import login from '@/views/Login/module/index';
 import menu from '@/views/Menu/module/index';
 import restaurant from '@/views/Restaurant/module/index';
-
+import cart from '@/store/cart';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -29,7 +29,8 @@ export default new Vuex.Store({
       login,
       language,
       restaurant,
-      regist
+      regist,
+      cart
    }
 });
 
