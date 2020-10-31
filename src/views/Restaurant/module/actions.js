@@ -10,7 +10,7 @@ const actions =  {
          const { list } = await restaurant();
          commit(types.SET_REST_LIST,{ list });
       } catch (error) {
-         // commit(types.SET_REST_LIST,{ message: error.message });
+         this._vm.$modal.show('error',{ message:error.message });
       }finally{
          commit(types.HIDE_LOADING);
       }
@@ -19,12 +19,15 @@ const actions =  {
    async toMenu ({ commit },{ restaurant }){
 
       commit(types.SHOW_LOADING);
-      commit(types.SAVE_REST_LIST,{ restaurant });
-
-      setStorage('restaurant',restaurant);
-      router.push(`/menu/${restaurant._id}`);
-
-      commit(types.HIDE_LOADING);
+      try{
+         commit(types.SAVE_REST_LIST,{ restaurant });
+         setStorage('restaurant',restaurant);
+         router.push(`/menu/${restaurant._id}`);
+      }catch (error) {
+         this._vm.$modal.show('error',{ message:error.message });
+      }finally{
+         commit(types.HIDE_LOADING);
+      }
    }
 };
 

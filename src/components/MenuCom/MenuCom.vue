@@ -52,9 +52,6 @@ export default {
 
       }),
    },
-   created (){
-      // console.log(this.$props.foods);
-   },
 
 };
 </script>

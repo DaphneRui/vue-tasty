@@ -82,11 +82,11 @@ export default {
       ...mapActions([
          'addCart'
       ]),
+      /* 添加菜品 */
       addCount (){
          if(!this.$props.item.available){
             return false;
          }
-         console.log('item',this.$props.item);
          this.addCart({ food: this.$props.item });
       }
    },
