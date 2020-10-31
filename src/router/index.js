@@ -65,7 +65,6 @@ router.beforeEach((to, from, next) => {
       console.log('in====>');
       next();
    }
-
    if(!requireLogin){
       /* 不需要登录，正常跳转 */
       next();
