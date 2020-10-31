@@ -43,7 +43,7 @@ import _ from 'lodash';
 import { getStorage } from '@/common/utils.js';
 import { mapActions,mapState } from 'vuex';
 import menuItem from '@/components/MenuCom/MenuCom';
-import Cart from '@/components/Cart/cart';
+import Cart from '@/components/Cart/Cart';
 
 export default {
    name:'Menu',

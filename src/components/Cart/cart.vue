@@ -1,6 +1,21 @@
 <template>
   <div class="cart">
-    <button>
+    <div class="cart-container">
+      <div class="cart-text">
+        <div class="cart-empty-text">
+          选择加入购物车
+        </div>
+      </div>
+      <div>
+        <button
+          class="cart-subtotal-btn"
+          disabled=""
+        >
+          $0.00
+        </button>
+      </div>
+    </div>
+    <!-- <button>
       <img
         src="@/assets/close_btn.png"
         alt=""
@@ -22,7 +37,7 @@
         </div>
       </div>
       <div class="cart-right"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 
