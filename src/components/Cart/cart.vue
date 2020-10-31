@@ -85,8 +85,13 @@ export default {
          return price;
       }
    },
-   created () {
-      // console.log('cart',this.cart);
-   },
+   //  methods: {
+   //     ...mapActions([
+   //        'orderFood'
+   //     ]),
+   //     confirmOrder (){
+   //        this.orderFood();
+   //     }
+   //  }
 };
 </script>
