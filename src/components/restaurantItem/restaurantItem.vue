@@ -170,7 +170,7 @@ export default {
       ]),
       /* 点击跳转到菜单 */
       toMenuPage (){
-         this.toMenu({ restaurantId: this.$props.item._id });
+         this.toMenu({ restaurant: this.$props.item });
       },
       /* mouseover 样式变化 */
       changeStyle (){

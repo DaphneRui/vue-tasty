@@ -1,6 +1,7 @@
 import * as types from '@/store/mutation-type';
 import { restaurant } from '@/request/restaurant';
 import router from '@/router';
+import { setStorage } from '@/common/utils';
 
 const actions =  {
    async setRestList ({ commit }){
@@ -8,7 +9,6 @@ const actions =  {
       try {
          const { list } = await restaurant();
          commit(types.SET_REST_LIST,{ list });
-         console.log(list);
       } catch (error) {
          // commit(types.SET_REST_LIST,{ message: error.message });
       }finally{
@@ -16,11 +16,13 @@ const actions =  {
       }
    },
    /* 跳转到菜单页 */
-   async toMenu ({ commit },{ restaurantId }){
+   async toMenu ({ commit },{ restaurant }){
 
       commit(types.SHOW_LOADING);
+      commit(types.SAVE_REST_LIST,{ restaurant });
 
-      router.push({ name: 'Menu', params: { id: restaurantId } });
+      setStorage('restaurant',restaurant);
+      router.push(`/menu/${restaurant._id}`);
 
       commit(types.HIDE_LOADING);
    }

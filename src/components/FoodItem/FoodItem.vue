@@ -1,0 +1,95 @@
+<template>
+  <div>
+    <div
+      class="menu-food-item"
+      :style="{opacity: item.available ? '' : 0.2}"
+      @click="addCount"
+    >
+      <!-- 菜品计数 -->
+      <div
+        v-if="count !== 0"
+        class="menu-count"
+      >
+        <div class="menu-count-text">
+          {{ count }}
+        </div>
+      </div>
+
+      <!-- 菜品名,菜品价格 -->
+      <div
+        class="containerBetween"
+      >
+        <div class="menu-text">
+          {{ item.name[`${lang}`] }}
+        </div>
+        <div class="menu-price">
+          {{ item.price | Money }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import './foodItem.scss';
+import { mapState,mapActions } from 'vuex';
+import _ from 'lodash';
+export default {
+   name: 'FoodItem',
+   /* 菜品价格 */
+   filters:{
+      Money: function (value){
+         value = (value / 100).toFixed(2);
+         return '$' + value;
+      }
+   },
+   props:{
+      item:{
+         type:Object,
+         required:true,
+      }
+   },
+   computed: {
+      ...mapState({
+      /* 控制中英文 */
+         'lang': state => state.language.lang,
+
+         /* 购物车数据 */
+         'cart': state => state.cart.cart
+
+      }),
+      /* 菜品计数 */
+      count (){
+         /* 在购物车中寻找同种的菜品 */
+         const index = _.findIndex(this.cart, { _id: this.$props.item._id });
+         /* 菜品的数量 */
+         let length = 0;
+         /* 如果购物车中有菜品 */
+         if (index !== -1) {
+            const afterGroup = _.groupBy(this.cart, '_id');
+            /* 获取菜品的数量 */
+            _.forEach(afterGroup, (item, i) => {
+               if (i === this.$props.item._id) {
+                  length = item.length;
+               }
+            });
+         }
+         return length;
+      }
+   },
+
+   methods: {
+      ...mapActions([
+         'addCart'
+      ]),
+      addCount (){
+         if(!this.$props.item.available){
+            return false;
+         }
+         console.log('item',this.$props.item);
+         this.addCart({ food: this.$props.item });
+      }
+   },
+
+};
+</script>
