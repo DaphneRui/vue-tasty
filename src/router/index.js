@@ -44,7 +44,7 @@ const routes = [
       name: 'Restaurant',
       meta:{ requireLogin:false },
       component: () => import('../views/Restaurant/Restaurant.vue')
-   },
+   }
 ];
 
 const router = new VueRouter({
