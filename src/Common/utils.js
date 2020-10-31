@@ -27,3 +27,13 @@ export function encode (str){
    return crypted;
 }
 
+/* 检测用户名 */
+export function checkName (name){
+   let pattern = /^[a-zA-Z0-9_-]{4,16}$/;
+   return pattern.test(name);
+}
+/* 检测密码 */
+export function checkPassword (password){
+   var pattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/;
+   return pattern.test(password);
+}

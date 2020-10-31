@@ -20,7 +20,7 @@
 import Loading from './components/Loading/Loading';
 import RegistModal from './components/RegistModal/RegistModal';
 import Header from './components/Header/Header';
-import Error from './components/ErrorModal/errorModal';
+import Error from './components/ErrorModal/ErrorModal';
 export default {
    name:'App',
    components: {

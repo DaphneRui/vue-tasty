@@ -4,10 +4,11 @@
     name="error"
     :width="440"
     :height="120"
+    @before-open="beforeOpen"
   >
     <div class="error-box">
       <div>
-        <!-- {{ $t('login.error.name') }} -->
+        {{ message }}
       </div>
       <div class="container-col vertical space-between error-btn-box">
         <button
@@ -24,10 +25,20 @@
 <script>
 export default {
    name:'ErrorModal',
+   data:function () {
+      return {
+         message:''
+      };
+   },
    methods: {
       /* button控制error模态框的消失 */
       hideError (){
          this.$modal.hide('error');
+      },
+
+      beforeOpen (e){
+
+         this.message = e.params.message;
       }
    },
 };

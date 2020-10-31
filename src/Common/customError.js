@@ -34,6 +34,6 @@ export default function CustomError (err){
       this.message = _.get(err, 'response.data.message') || err.message || i18n.t('error.unknown');
    }
 
-   console.log(this);
+   console.log('customError this',this);
 
 }

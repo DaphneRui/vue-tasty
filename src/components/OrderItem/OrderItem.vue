@@ -1,5 +1,8 @@
 <template>
-  <div :class="['order-item-box',changeStyle ? 'order-item-box-show' : '']">
+  <div
+    ref="orderBox"
+    :class="['order-item-box',show ? 'order-item-box-show' : '']"
+  >
     <!-- 订单里的restaurant名字，订单生成时间 -->
     <div class="order-title">
       <div class="title-text order-item-name">
@@ -13,19 +16,22 @@
     <!-- order里的菜品 -->
     <div class="order-items">
       <div
-        v-for="items in item.cart"
-        :key="items.key"
+        v-for="items in orderItems"
+        :key="items[0]._id"
         class="container-between cart-item"
       >
         <!-- 显示购物车中所点的菜及数量 -->
         <div class="cart-item-name">
-          {{ items.name[`${lang}`] }}
+          {{ items[0].name[`${lang}`] }}
         </div>
-        <div class="cart-item-price">
-          $ {{ items.price/100 }}
+        <div
+          v-if="show"
+          class="cart-item-price"
+        >
+          $ {{ items[0].price/100 }}
         </div>
         <div class="cart-item-count">
-          {{ items.count }}
+          {{ items.length }}
         </div>
       </div>
     </div>
@@ -64,58 +70,77 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
+// import uuidv4 from 'uuid/v4';
 
 /* eslint-disable */
 export default {
-   name: 'OrderItem',
-   props:{
-      item:{
-         type:Object,
-         require: true
-      }
-   },
-   data () {
-      return {
-         changeStyle: false,
-         show:false
-      };
-   },
-   computed: {
-      ...mapState({
-         'lang': state => state.language.lang,
-         'list': state => state.order.orderList
-      }),
+    name: 'OrderItem',
+    props:{
+        item:{
+            type:Object,
+            require: true
+        }
+    },
+    data () {
+        return {
+            changeStyle: false,
+            show:false,
+        };
+    },
+    computed: {
+        ...mapState({
+            'lang': state => state.language.lang,
+            'list': state => state.order.orderList
+        }),
 
       // 显示restaurant----name
       name (){
-         return this.$props.item.restaurant.name[`${this.lang}`];
+          return this.$props.item.restaurant.name[`${this.lang}`];
       },
       // 显示下单时间
       time(){
-         return Moment(this.$props.item.createdAt).format('YYYY-MM-DD hh:mm');
+          return Moment(this.$props.item.createdAt).format('YYYY-MM-DD hh:mm');
       },
-      // 显示购物车中所点的菜及数量
+      
       
       // 显示菜的价格
       price(){
-         return this.$props.item.cart[0].totalPrice;
+          return this.$props.item.cart[0].totalPrice;
       },
 
-      // 显示食物的数量
-      // count(){
-      //    return this.$props.item.length;
-      // }
+      // 显示订单中所点的菜及数量
+      orderItems (){
 
+        const orderItems = _(this.$props.item.cart)
+          .groupBy(i => i._id)
+          .value();
+        console.log(orderItems);
+        return orderItems;
+      }
 
-   },
-   methods: {
-      // 点击更多按钮 改变order的样式
-      ChangeMore (){
-         this.changeStyle = !this.changeStyle
-         this.show = !this.show
+    },
 
-      },
-   },
+    methods: {
+        // 点击更多按钮 改变order的样式
+        ChangeMore (e){
+
+            e.preventDefault();
+            this.show = true;
+
+            document.addEventListener('mousedown', this.handleOut, true);
+
+            
+        },
+        handleOut(e){
+          const ref = this.$refs.orderBox;
+          if (ref && !ref.contains(e.target)) {
+            this.show = false;
+            document.removeEventListener('mousedown',this.handleOut,true)
+          }
+        },
+
+    },
+    
 };
 </script>
 
