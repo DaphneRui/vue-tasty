@@ -40,7 +40,7 @@ const actions = {
 
    },
    /* 删除菜品 */
-   async removeCart ({ commit }){
+   async removeCart ({ commit },{ food }){
       commit(types.SHOW_LOADING);
       let cart = [];
       try{
@@ -50,8 +50,11 @@ const actions = {
          } else {
             cart = getStorage('cart');
          }
-         // cart.splice();
-         commit(types.CLEAR_CART, { cart });
+         /* 删除 */
+         const index = _.findLastIndex(cart, (item) =>
+            item._id  === food._id);
+         cart.splice(index, 1);
+         commit(types.SAVE_CART, { cart });
          setStorage('cart',cart);
       }catch(error){
          this._vm.$modal.show('error',{ message:error.message });

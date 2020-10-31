@@ -85,7 +85,6 @@ export default {
                closedRestaurant.push(item);
             }
          });
-
          return _.concat(openedRestaurant, closedRestaurant);
 
       },
