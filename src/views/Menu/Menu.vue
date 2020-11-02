@@ -30,7 +30,7 @@
       />
     </div>
     <div class="menu-cart">
-      <div>
+      <div class="menu-cart-container">
         <Cart />
       </div>
     </div>

@@ -16,7 +16,6 @@ const fetch = (options) => {
    console.log('//////', options);
    const { data = {}, headers = {}, method } = options;
 
-   // const token = _.get(getStorage('user'), '_id');
    const token = _.get(getStorage('userInfo'), 'token');
 
    // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVwZGF0ZWRBdCI6IjIwMjAtMDEtMTdUMTE6NDM6NDQuNDU5WiIsIl9pZCI6IjVlMjE5ZTBhYTI3NGVmNTM3NjA5ZmU4NiIsInVzZXJuYW1lIjoiaXNlbiIsInBhc3N3b3JkIjoiJDJiJDEwJGptR1JHOEJRMi41UnJ6SXFxQk1jcS5yY2V4NWIvRzVBQzZLbnBTdG5HM3lSczBhVlBldnJHIiwibmlja25hbWUiOiIiLCJjcmVhdGVkQXQiOiIyMDIwLTAxLTE3VDExOjQ0OjEwLjcwOFoiLCJfX3YiOjB9LCJpYXQiOjE2MDQxMzY2MjMsImV4cCI6MTYwNDM5NTgyM30.iyDdvw8R8RFd1HrxqL6fIijdt879rRuLnWaWgrjqJyo';

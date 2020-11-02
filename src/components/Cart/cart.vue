@@ -118,12 +118,12 @@ export default {
    data () {
       return {
          isShow:false,
-         payment: '',
-         payments: [
-            { value: 'alipay', img: '@/assets/alipay.png' },
-            { value: 'wechat', img: '@/assets/wechatpay.png' },
-            { value: 'applepay', img: '@/assets/applepay.png' }
-         ],
+         //  payment: '',
+         //  payments: [
+         //     { value: 'alipay', img: '@/assets/alipay.png' },
+         //     { value: 'wechat', img: '@/assets/wechatpay.png' },
+         //     { value: 'applepay', img: '@/assets/applepay.png' }
+         //  ],
 
       };
    },
@@ -160,7 +160,7 @@ export default {
          'orderFood'
       ]),
       submit (){
-         if(!this.isShow){
+         if( !this.isShow ){
             this.isShow = true;
          }else{
             this.orderFood();
