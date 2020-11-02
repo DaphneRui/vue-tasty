@@ -74,6 +74,6 @@
         "need-login":"您需要先登录。",
         "user-duplicate":"用户名重复。",
         "auth-failed":"请重新登录。",
-        "No user":"2222"
+        "No user":"没有该用户"
       }
 }

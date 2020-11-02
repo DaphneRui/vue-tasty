@@ -5,7 +5,7 @@ import { encode } from '../../../common/utils';
 const actions = {
    async regist ({ commit },{ username,password }){
       try{
-         const user = await regist({ regUsername:encode(username),regPassword:encode(password) });
+         const user = await regist({ username:encode(username),password:encode(password) });
          console.log('regist user',user);
          commit(types.REGIST_USERINFO,user);
       }catch(error){

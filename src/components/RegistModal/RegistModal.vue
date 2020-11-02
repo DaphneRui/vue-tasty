@@ -12,7 +12,7 @@
         </div>
         <div>
           <input
-            v-model="regUsername"
+            v-model="username"
             type="text"
             class="input"
           >
@@ -24,7 +24,7 @@
         </div>
         <div>
           <input
-            v-model="regPassword"
+            v-model="password"
             type="password"
             class="input"
           >
@@ -62,8 +62,8 @@ export default {
    name:'RegistModal',
    data () {
       return {
-         regUsername:'',
-         regPassword:'',
+         username:'',
+         password:'',
          checkPass:'',
       };
    },
@@ -71,18 +71,23 @@ export default {
       ...mapActions([ 'regist' ]),
       /* 通过vue-js-modal显示error框的显示 */
       handleRegist (){
-         if(!checkName(this.regUsername)){
+         if(!checkName(this.username)){
             this.$modal.show('error',{ message:this.$t('login.error.name') });
          }
-         if(!checkPassword(this.regPassword)){
+         if(!checkPassword(this.password)){
             this.$modal.show('error',{ message:this.$t('login.error.password') });
-            this.regPassword = '';
+            this.password = '';
             this.checkPass = '';
          }
-         if(this.checkPass != this.regPassword){
+         if(this.checkPass != this.password){
+            console.log('======>in');
             this.$modal.show('error',{ message:this.$t('login.error.comfirmPassword') });
          }
-         this.regist({ username:this.regUsername,password:this.regPassword });
+         this.regist({ username:this.username,password:this.password });
+         this.$modal.hide('regist');
+         this.username = '';
+         this.password = '';
+         this.checkPass = '';
       }
    }
 };
