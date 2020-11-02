@@ -27,7 +27,9 @@
               value="payment"
               options="payments"
             >
-              <option>weChat</option>
+              <option data-iconurl="../../assets/wechatpay.png">
+                weChat
+              </option>
               <option>ApplePay</option>
               <option>支付宝</option>
             </select>
