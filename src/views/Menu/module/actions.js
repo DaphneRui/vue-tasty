@@ -94,6 +94,8 @@ const actions = {
          commit(types.CLEAR_CART);
          setStorage('cart',[]);
          /* 跳转至订单页面 */
+
+         console.log('=====');
          router.push('/order');
 
       }catch(error){

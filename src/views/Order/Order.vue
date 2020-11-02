@@ -13,7 +13,6 @@
         :key="item._id"
       >
         <OrderItem :item="item"></OrderItem>
-        <!-- {{ $t('order.more') }} -->
       </div>
     </div>
   </div>
@@ -36,10 +35,6 @@ export default {
    },
    methods: {
       ...mapActions([ 'loadOrderActions' ]),
-
-      // click (){
-      //    this.loadOrder();
-      // }
    },
    computed:{
       ...mapState({

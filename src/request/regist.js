@@ -8,6 +8,5 @@ export async function regist (user){
       method:'post',
       data: user
    });
-   //    console.log('result===>', result);
    return result;
 }

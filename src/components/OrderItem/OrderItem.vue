@@ -70,7 +70,6 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
-// import uuidv4 from 'uuid/v4';
 
 /* eslint-disable */
 export default {
@@ -133,17 +132,16 @@ export default {
         // 点击更多按钮 改变order的样式
         ChangeMore (e){
 
-            // e.preventDefault();
             this.show = true;
 
-            document.addEventListener('mousedown', this.handleOut, true);
+            document.addEventListener('click', this.handleOut, true);
 
         },
         handleOut(e){
           const ref = this.$refs.orderBox;
           if (ref && !ref.contains(e.target)) {
             this.show = false;
-            document.removeEventListener('mousedown',this.handleOut,true)
+            document.removeEventListener('click',this.handleOut,true)
           }
         },
     },

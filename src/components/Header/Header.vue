@@ -138,18 +138,12 @@ export default {
          const ref = this.$refs.proBox;
 
          if(ref && ref.contains(e.target)){
-            // this.showDown = true;
             console.log(123);
          }else {
             this.showDown = false;
             document.removeEventListener('mousedown',this.clickListener,true);
          }
       },
-      // isShowBtn (){
-
-      //    console.log('this.$router.currentRoute.path===>',this.$router.currentRoute.path);
-
-      // }
    }
 
 };
