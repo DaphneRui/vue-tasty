@@ -78,6 +78,7 @@
         <button
           v-else
           class="cart-totalBtn-style"
+          @click="submit"
         >
           确认下单
         </button>
@@ -87,7 +88,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState,mapActions } from 'vuex';
 import './cart.scss';
 import _ from 'lodash';
 /* components */
@@ -139,12 +140,28 @@ export default {
       // console.log('cart',this.cart);
    },
    methods: {
+      ...mapActions([
+         'orderFood'
+      ]),
       submit (){
-         this.isShow = true;
+         if( !this.isShow ){
+            this.isShow = true;
+         }else{
+            this.orderFood();
+         }
+
       },
       expand (){
          this.isShow = false;
       }
    },
+   //  methods: {
+   //     ...mapActions([
+   //        'orderFood'
+   //     ]),
+   //     confirmOrder (){
+   //        this.orderFood();
+   //     }
+   //  }
 };
 </script>

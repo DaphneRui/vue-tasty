@@ -37,6 +37,7 @@ const routes = [
       name: 'Order',
       /* 传入参数，表示进入这个页面之前是一定要登录的 */
       meta:{ requireLogin:true },
+      // component: () => import('../views/Order/Order.vue')
       component: () => import('../views/Order/Order.vue'),
       beforeEnter: (to, from, next) => {
          if(!_.get(getStorage('userInfo'),'token')) {
