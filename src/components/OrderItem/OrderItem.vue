@@ -136,14 +136,14 @@ export default {
             // e.preventDefault();
             this.show = true;
 
-            document.addEventListener('mousedown', this.handleOut, true);
+            document.addEventListener('click', this.handleOut, true);
 
         },
         handleOut(e){
           const ref = this.$refs.orderBox;
           if (ref && !ref.contains(e.target)) {
             this.show = false;
-            document.removeEventListener('mousedown',this.handleOut,true)
+            document.removeEventListener('click',this.handleOut,true)
           }
         },
     },
