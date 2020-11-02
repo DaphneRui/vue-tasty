@@ -4,6 +4,10 @@ const mutations = {
    [types.SAVE_USERINFO] (state,data){
       state.user = data;
       // console.log('state',state);
+   },
+
+   [types.CLEAR_USERINFO] (state){
+      state.user = {};
    }
 };
 

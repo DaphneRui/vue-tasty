@@ -33,7 +33,7 @@ export const LOAD_ORDER = 'LOAD_ORDER';
 /* login */
 export const SAVE_USERINFO = 'SAVE_USERINFO';
 
-export const CLEAR_USERINFO = 'SAVE_USERINFO';
+export const CLEAR_USERINFO = 'CLEAR_USERINFO';
 
 /* regist */
 export const REGIST_USERINFO = 'REGIST_USERINFO';

@@ -92,7 +92,8 @@ export default {
    },
    methods:{
       ...mapActions([
-         'setLanguage'
+         'setLanguage',
+         'clearData'
       ]),
       /* 切换中英文 */
       changeLang (lang) {
@@ -106,10 +107,10 @@ export default {
          this.$router.push('/login');
       },
       logout (){
-         if(this.$route.path === '/order'){
-            this.showLogin = true;
-            this.showLogout = false;
-         }
+         this.showLogin = true;
+         this.showLogout = false;
+         this.showHistory = false;
+         this.clearData();
       },
       showDiv (){
          this.showDown = true;
