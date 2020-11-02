@@ -84,7 +84,7 @@ const actions = {
       try{
          /* 确认下单,传送数据至订单页面 */
          const data = {
-            payment: 'alipay' , // 存在localstorage中的payment的value
+            payment: getStorage('payment').value, // 存在localstorage中的payment的value
             cart:	getStorage('cart'),	// 全部菜品平铺
             userId: getStorage('userInfo')._id,	// 用户id
             restaurantId: getStorage('restaurant')._id // 餐馆id

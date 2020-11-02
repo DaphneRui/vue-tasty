@@ -17,6 +17,10 @@ Vue.config.productionTip = false;
 
 Vue.use(VueI18n);
 
+/* vue-select */
+import vSelect from 'vue-select';
+Vue.component('v-select', vSelect);
+
 export const i18n = new VueI18n({
    locale: JSON.parse(localStorage.getItem('language')) || 'zh-CN',
    messages: {
