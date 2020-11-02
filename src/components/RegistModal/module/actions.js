@@ -9,7 +9,6 @@ const actions = {
          console.log('regist user',user);
          commit(types.REGIST_USERINFO,user);
       }catch(error){
-         // console.log('regist error///',error);
          this._vm.$modal.show('error',{ message:error.message });
       }
    }

@@ -39,6 +39,7 @@
       <button
         v-if="showHistory"
         class="down-order"
+        @click="jumpToHistory"
       >
         {{ $t('order.title') }}
       </button>
@@ -79,6 +80,7 @@ export default {
    name: 'Header',
    data () {
       return {
+         /* 四个状态控制头部框和头部按钮的显示和隐藏 */
          showDown: false,
          showLogin:false,
          showLogout:false,
@@ -100,23 +102,25 @@ export default {
          this.$i18n.locale = lang;
          this.setLanguage(lang);
       },
+      /* 跳转到餐馆页面 */
       jumpToRestaurant (){
          this.$router.push('/restaurant');
       },
+      /* 跳转到login页面 */
       jumpToLogin (){
          this.$router.push('/login');
       },
+      /* 点击登出按钮，清除浏览器和vuex数据 */
       logout (){
          this.showLogin = true;
          this.showLogout = false;
          this.showHistory = false;
          this.clearData();
       },
+      /* 点击头像icon，显示头部框 */
       showDiv (){
          this.showDown = true;
          document.addEventListener('mousedown',this.clickListener);
-
-         console.log(_.get(getStorage('userInfo'),'token'));
          if(_.get(getStorage('userInfo'),'token')){
             if(this.$route.path === '/order'){
                this.showLogout = true;
@@ -133,25 +137,23 @@ export default {
             }
          }
       },
+      /* 增加一个监听器，点击头部框以外的区域，让这个框消失 */
       clickListener (e){
-
+         /* 给头部框绑定一个ref值 */
          const ref = this.$refs.proBox;
-
+         /* 判断条件表示当头部框显示并且鼠标点击区域包含在头部框以内 */
          if(ref && ref.contains(e.target)){
-            // this.showDown = true;
             console.log(123);
          }else {
             this.showDown = false;
             document.removeEventListener('mousedown',this.clickListener,true);
          }
       },
-      // isShowBtn (){
-
-      //    console.log('this.$router.currentRoute.path===>',this.$router.currentRoute.path);
-
-      // }
+      /* 跳转到order页面 */
+      jumpToHistory (){
+         this.$router.push('/order');
+      }
    }
-
 };
 </script>
 <style scoped lang="scss">

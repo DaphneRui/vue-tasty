@@ -71,19 +71,23 @@ export default {
       ...mapActions([ 'regist' ]),
       /* 通过vue-js-modal显示error框的显示 */
       handleRegist (){
+         /* 用户名正则验证不正确，跳出相应的错误框，将message传给errorModal里的message */
          if(!checkName(this.username)){
             this.$modal.show('error',{ message:this.$t('login.error.name') });
          }
+         /* 密码正则验证不正确 */
          if(!checkPassword(this.password)){
             this.$modal.show('error',{ message:this.$t('login.error.password') });
             this.password = '';
             this.checkPass = '';
          }
+         /* 密码和确认密码不一致 */
          if(this.checkPass != this.password){
             console.log('======>in');
             this.$modal.show('error',{ message:this.$t('login.error.comfirmPassword') });
          }
          this.regist({ username:this.username,password:this.password });
+         /* 点击注册之后隐藏注册模态框并清空输入内容 */
          this.$modal.hide('regist');
          this.username = '';
          this.password = '';

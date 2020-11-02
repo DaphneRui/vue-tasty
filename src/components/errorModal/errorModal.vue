@@ -39,9 +39,8 @@ export default {
          this.closeFunc();
          this.$modal.hide('error');
       },
-
+      /* 在errorModal模态框打开之前，接收传过来的错误信息，赋给当前显示的message */
       beforeOpen (e){
-
          this.message = e.params.message;
          /* 没有登录,跳转登录页面 */
          if(_.isFunction(e.params.func)){
