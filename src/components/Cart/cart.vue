@@ -135,7 +135,6 @@ export default {
          return price;
       }
    },
-<<<<<<< HEAD
    created () {
       // console.log('cart',this.cart);
    },
@@ -147,15 +146,5 @@ export default {
          this.isShow = false;
       }
    },
-=======
-   //  methods: {
-   //     ...mapActions([
-   //        'orderFood'
-   //     ]),
-   //     confirmOrder (){
-   //        this.orderFood();
-   //     }
-   //  }
->>>>>>> a0ad08988aa7fcececf5213ad038c03d6d4bc43c
 };
 </script>

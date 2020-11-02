@@ -68,9 +68,6 @@ export default {
             this.password = '';
          }
          this.login({ username:this.username,password:this.password });
-         if(checkName(this.username) && checkPassword(this.password)){
-            this.$router.push('/restaurant');
-         }
       },
       /* vue-js-modal实现registmodal的显示 */
       showModal () {
