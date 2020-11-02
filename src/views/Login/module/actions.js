@@ -12,7 +12,11 @@ const actions = {
          const user = await login({ username:encode(username),password:encode(password) });
          commit(types.SAVE_USERINFO,user );
          setStorage('userInfo',user);
-         router.push({ path:'/restaurant' });
+         if(history.length > 1){
+            router.back();
+         }else{
+            router.push('/restaurant');
+         }
       }catch(error){
          if(error.code === 'No user'){
             this._vm.$modal.show('error',{ message:error.message });
