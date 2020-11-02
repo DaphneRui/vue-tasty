@@ -45,7 +45,7 @@ export default {
 }
 .main-content{
   position : relative;
-  top : 100px;
+  margin-top : 100px;
   // display : flex;
   // width : 100%;
 }
