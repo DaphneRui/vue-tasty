@@ -2,13 +2,10 @@
 
 .cart{
     position : fixed;
-    // position : absolute;
     right : calc((100vw - 1440px)/2 + 120px);
     bottom : calc(28vh - 187.6px);
     display : flex;
     flex-direction : row;
-    // justify-content : space-between;
-    // width : 320px;
     max-height : 650px;
     
 }
@@ -16,7 +13,6 @@
 .menu-cart-closed{
     display : flex;
     flex-direction : column;
-    // justify-content : space-between;
     padding :0;
     margin-right : 10px;
     background-color : transparent;
@@ -34,58 +30,32 @@
     margin-top : 50px;
 }
 
-
-.cart-left-container{
-    width : 400px;
-    // width : 0px;
-    height : 690px;
-    // padding : 0px;
+.cart-left-expand{
+    width : 450px;
+    height : 693px;
+    padding : 0px 20px;
+    overflow-y : hidden;
     background : rgb(247, 247, 247);
-    border : 1px black solid;
-    border-width : 1px 0px 1px 1px;
-    border-top-color : rgb(247, 247, 247);
-    border-top-style : solid;
-    border-right-color : initial;
-    border-right-style : initial;
-    border-bottom-color : rgb(247, 247, 247);
-    border-bottom-style : solid;
-    border-left-color : rgb(247, 247, 247);
-    border-left-style : solid;
-    border-image : initial;
+    border-right : 2px solid rgb(204, 204, 204);
+    box-shadow : none;
     box-shadow : rgba(146, 146, 146, 0.5) 0px 2px 8px 0px;
-    transition : width 0.3s linear 0s, padding 0.3s linear 0s, opacity 0.3s cubic-bezier(0.7, 0.07, 1, -0.07) 0s;
-    
+    transition : width 1s linear 0s, padding 0.3s linear 0s, opacity 0.9s cubic-bezier(0.7, 0.07, 1, -0.07) 0s;
 }
-// .cart-left-expand{
-//     width : 450px;
-//     padding : 0px 20px;
-//     overflow-y : hidden;
-//     border-right : 2px solid rgb(204, 204, 204);
-//     box-shadow : none;
-//     transition : width 0.3s linear 0s, padding 0.3s linear 0s, opacity 0.3s cubic-bezier(0.7, 0.07, 1, -0.07) 0s;
-// }
 
 .cart-container{
-    // position : fixed;
-    // right : calc((100vw - 1440px)/2 + 120px);
-    // bottom : calc(28vh - 187.6px);
     display : flex;
     flex-direction : column;
     justify-content : space-between;
     width : 320px;
-    // height : 400px;
     padding : 15px 20px 20px;
     background : #f7f7f7;
     border : 1px solid #f7f7f7;
     box-shadow : 0 2px 8px 0 hsla(0,0%,57.3%,.5);
 }
-// transition : all .3s linear;
 .cart-content{
     display : flex;
     flex-direction : column;
     overflow : auto;
-    // overflow-x : hidden;
-    // overflow-y : auto;
     .cart-empty-text{
         height : 16px;
         margin-bottom : 16px;
@@ -116,9 +86,6 @@
         &:disabled{
             background : $line-grey;
         }
-        // &:hover{
-        //     background : #0d9e65;
-        // }
     }
     
     .cart-totalBtn-style{
@@ -139,9 +106,6 @@
 
 
 .cart-expend{
-    // position : fixed;
-    // right : calc((100vw - 1440px)/2 + 120px);
-    // bottom : calc(28vh - 187.6px);
     display : flex;
     flex-direction : column;
     justify-content : space-between;

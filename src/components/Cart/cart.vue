@@ -13,11 +13,13 @@
       </button>
     </div>
     <div
-      v-show="isShow"
-      class="cart-left-container"
+      :class="[isShow ? 'cart-left-expand' : 'cart-left-container']"
     >
       <!-- 131133131 -->
-      <div class="container-col">
+      <div
+        v-show="isShow"
+        class="container-col"
+      >
         <div class="container-row-center">
           <img src="@/assets/logo.png" />
         </div>
