@@ -31,65 +31,75 @@
               <option>ApplePay</option>
               <option>支付宝</option>
             </select>
+            <!-- <v-select
+              :placeholder="'选择支付方式'"
+              :options="payments"
+              :options-value="'value'"
+              :options-lable="'img'"
+            >
+            </v-select> -->
           </div>
         </div>
       </div>
-    </div>
-    <div
-      :class="[isShow?'cart-expend':'cart-container']"
-    >
       <div
-        class="cart-content"
+        :class="[isShow?'cart-expend':'cart-container']"
       >
-        <!-- 购物车空 -->
         <div
-          v-if="cartItem.length === 0"
-          class="cart-empty-text"
+          class="cart-content"
         >
-          {{ $t('menu.cartTitle') }}
-        </div>
+          <!-- 购物车空 -->
+          <div
+            v-if="cartItem.length === 0"
+            class="cart-empty-text"
+          >
+            {{ $t('menu.cartTitle') }}
+          </div>
 
-        <!-- 购物车数据 -->
-        <div v-if="cartItem.length > 0">
-          <CartItem
-            v-for=" item in cartItem"
-            :key="item._id"
-            :item="item"
-          />
+          <!-- 购物车数据 -->
+          <div v-if="cartItem.length > 0">
+            <CartItem
+              v-for=" item in cartItem"
+              :key="item._id"
+              :item="item"
+            />
+          </div>
         </div>
-      </div>
-      <div>
-        <div
-          v-show="isShow"
-          class="container-between menu-cart-total"
-        >
-          <div>总价：</div>
-          <div>{{ totalPrice | Money }}</div>
+        <div>
+          <div
+            v-show="isShow"
+            class="container-between menu-cart-total"
+          >
+            <div>总价：</div>
+            <div>{{ totalPrice | Money }}</div>
+          </div>
+          <button
+            v-if="isShow == false"
+            class="cart-totalBtn"
+            :disabled="cartItem.length === 0"
+            :hover="cartItem.length > 0"
+            @click="submit"
+          >
+            {{ totalPrice | Money }}
+          </button>
+          <button
+            v-else
+            class="cart-totalBtn-style"
+            @click="submit"
+          >
+            确认下单
+          </button>
         </div>
-        <button
-          v-if="isShow == false"
-          class="cart-totalBtn"
-          :disabled="cartItem.length === 0"
-          :hover="cartItem.length > 0"
-          @click="submit"
-        >
-          {{ totalPrice | Money }}
-        </button>
-        <button
-          v-else
-          class="cart-totalBtn-style"
-        >
-          确认下单
-        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState,mapActions } from 'vuex';
 import './cart.scss';
 import _ from 'lodash';
+// import { setStorage,getStorage } from '@/common/utils';
+
 /* components */
 import CartItem from '@/components/CartItem/CartItem';
 
@@ -108,6 +118,13 @@ export default {
    data () {
       return {
          isShow:false,
+         payment: '',
+         payments: [
+            { value: 'alipay', img: '@/assets/alipay.png' },
+            { value: 'wechat', img: '@/assets/wechatpay.png' },
+            { value: 'applepay', img: '@/assets/applepay.png' }
+         ],
+
       };
    },
    computed: {
@@ -139,8 +156,15 @@ export default {
       // console.log('cart',this.cart);
    },
    methods: {
+      ...mapActions([
+         'orderFood'
+      ]),
       submit (){
-         this.isShow = true;
+         if(!this.isShow){
+            this.isShow = true;
+         }else{
+            this.orderFood();
+         }
       },
       expand (){
          this.isShow = false;
