@@ -13,26 +13,48 @@
       </button>
     </div>
     <div
-      v-show="isShow"
-      class="cart-left-container"
+      :class="[isShow ? 'cart-left-expand' : 'cart-left-container']"
     >
-      <!-- 131133131 -->
-      <div class="container-col">
+      <!-- 支付方式 -->
+      <div
+        v-show="isShow"
+        class="container-col"
+      >
         <div class="container-row-center">
           <img src="@/assets/logo.png" />
         </div>
         <div class="container-row-align">
-          <div class="menu-cart-payment-input">
-            <select
-              value="payment"
-              options="payments"
+          <div class="cart-payment-input">
+            <v-select
+              :placeholder="'选择支付方式'"
+              :options="payments"
+              :value="payment"
+              label="value"
+              @input="changePayment($event)"
             >
-              <option data-iconurl="../../assets/wechatpay.png">
-                weChat
-              </option>
-              <option>ApplePay</option>
-              <option>支付宝</option>
-            </select>
+              <!-- 选中 -->
+              <template
+                slot="selected-option"
+                slot-scope="option"
+              >
+                <img
+                  :src="option.img"
+                  alt=""
+                  class="payment-image"
+                >
+              </template>
+              <!-- 未选中 -->
+              <template
+                slot="option"
+                slot-scope="option"
+              >
+                <img
+                  :src="option.img"
+                  alt=""
+                  class="payment-image"
+                >
+              </template>
+            </v-select>
           </div>
         </div>
       </div>
@@ -93,9 +115,16 @@
 import { mapState,mapActions } from 'vuex';
 import './cart.scss';
 import _ from 'lodash';
+import 'vue-select/dist/vue-select.css';
+import { setStorage,getStorage } from '@/common/utils';
+
 /* components */
 import CartItem from '@/components/CartItem/CartItem';
 
+/* images */
+import alipayImage from '@/assets/alipay_big.png';
+import wechatImage from '@/assets/wechat_big.png';
+import applepayImage from '@/assets/applepay.png';
 export default {
    name:'Cart',
    components:{
@@ -111,6 +140,13 @@ export default {
    data () {
       return {
          isShow:false,
+         payment: getStorage('payment') || '',
+         payments: [
+            { value: 'alipay', img: alipayImage },
+            { value: 'wechat', img: wechatImage },
+            { value: 'applepay', img:  applepayImage }
+         ],
+
       };
    },
    computed: {
@@ -138,9 +174,6 @@ export default {
          return price;
       }
    },
-   created () {
-      // console.log('cart',this.cart);
-   },
    methods: {
       ...mapActions([
          'orderFood'
@@ -151,19 +184,17 @@ export default {
          }else{
             this.orderFood();
          }
-
       },
       expand (){
          this.isShow = false;
+      },
+
+      /* 改变支付方式 */
+      changePayment (e){
+         setStorage('payment',e);
+         this.payment = e;
       }
    },
-   //  methods: {
-   //     ...mapActions([
-   //        'orderFood'
-   //     ]),
-   //     confirmOrder (){
-   //        this.orderFood();
-   //     }
-   //  }
+
 };
 </script>

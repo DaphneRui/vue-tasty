@@ -7,7 +7,6 @@ const actions = {
    async loadOrderActions ({ commit }){
       try {
          commit(types.SHOW_LOADING);
-         // const userId = '59879867376b1e0011183f83';
          const userId = _.get(getStorage('userInfo'),'_id');
          const list = await loadOrder(userId);
          commit(types.LOAD_ORDER,list );

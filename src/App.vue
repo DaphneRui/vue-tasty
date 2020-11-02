@@ -41,18 +41,13 @@ export default {
   width : 1440px;
   padding : 0 120px;
   margin : auto;
-  background-color : #f7f7f7;
+  // background-color : #f7f7f7;
 }
 .main-content{
   position : relative;
-  top : 100px;
-  // display : flex;
-  // width : 100%;
+  margin-top : 100px;
 }
 .test{
   border : 1px solid #000;
 }
-// .test{
-//   border : 1px solid #000;
-// }
 </style>

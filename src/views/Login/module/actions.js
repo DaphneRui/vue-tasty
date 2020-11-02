@@ -24,7 +24,6 @@ const actions = {
             this._vm.$modal.show('error',{ message:error.message });
          }
          this._vm.$modal.show('error',{ message:error.message });
-         // console.log('login error',{ message:error.message });
       }finally{
          commit(types.HIDE_LOADING);
       }
