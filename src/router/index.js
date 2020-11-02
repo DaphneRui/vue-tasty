@@ -37,9 +37,7 @@ const routes = [
       name: 'Order',
       /* 传入参数，表示进入这个页面之前是一定要登录的 */
       meta:{ requireLogin:true },
-<<<<<<< HEAD
-      component: () => import('../views/Order/Order.vue')
-=======
+      // component: () => import('../views/Order/Order.vue')
       component: () => import('../views/Order/Order.vue'),
       // beforeEnter: (to, from, next) => {
       //    if(!_.get(getStorage('userInfo'),'token')) {
@@ -50,7 +48,6 @@ const routes = [
       //       next();
       //    }
       // }
->>>>>>> e48637479d12aa74c766733b1a5b8e3f76e94fdb
    },
    {
       path: '/restaurant',
