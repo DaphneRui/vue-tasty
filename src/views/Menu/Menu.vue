@@ -40,11 +40,14 @@
 <script>
 import './Menu.scss';
 import _ from 'lodash';
+// import moment from 'moment-timezone';
+import { checkRestaurantClosed } from '@/common/utils.js';
 import { setStorage,getStorage } from '@/common/utils.js';
 import * as types from '@/store/mutation-type';
 import { mapActions,mapState } from 'vuex';
 import menuItem from '@/components/MenuCom/MenuCom';
 import Cart from '@/components/Cart/Cart';
+import { i18n } from '@/main';
 
 export default {
    name:'Menu',
@@ -110,6 +113,23 @@ export default {
          setStorage('cart',[]);
          this.$store.commit(types.CLEAR_CART);
       }
+
+   },
+   mounted () {
+      /* 检测店铺是否关闭 */
+      if(this.timer){
+         clearInterval(this.timer);
+      }else{
+         this.timer = setInterval(()=>{
+            if(checkRestaurantClosed(getStorage('restaurant')) === false){
+               this.$modal.show('error',{ message:i18n.t('menu.closed') });
+            }
+         }, 30000);
+      }
+
+   },
+   beforeDestroy () {
+      clearInterval(this.timer);
    },
 
    methods:{

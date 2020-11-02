@@ -17,7 +17,8 @@
       "place-order": "Place Order",
       "total": "Total:",
       "choose-payment":"Select Payment",
-      "no-menu":"No menu at the moment."
+      "no-menu":"No menu at the moment.",
+      "closed": "The store is closed"
     },
     "order":{
       "title":"Past Orders",

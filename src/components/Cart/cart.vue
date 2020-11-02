@@ -26,7 +26,7 @@
         <div class="container-row-align">
           <div class="cart-payment-input">
             <v-select
-              :placeholder="'选择支付方式'"
+              :placeholder="placeholder"
               :options="payments"
               :value="payment"
               label="value"
@@ -87,7 +87,7 @@
           v-show="isShow"
           class="container-between menu-cart-total"
         >
-          <div>总价：</div>
+          <div>{{ $t('menu.total') }}</div>
           <div>{{ totalPrice | Money }}</div>
         </div>
         <button
@@ -104,7 +104,7 @@
           class="cart-totalBtn-style"
           @click="submit"
         >
-          确认下单
+          {{ $t('menu.place-order') }}
         </button>
       </div>
     </div>
@@ -117,6 +117,7 @@ import './cart.scss';
 import _ from 'lodash';
 import 'vue-select/dist/vue-select.css';
 import { setStorage,getStorage } from '@/common/utils';
+import { i18n } from '@/main';
 
 /* components */
 import CartItem from '@/components/CartItem/CartItem';
@@ -146,6 +147,7 @@ export default {
             { value: 'wechat', img: wechatImage },
             { value: 'applepay', img:  applepayImage }
          ],
+         placeholder: i18n.t('menu.choose-payment')
 
       };
    },

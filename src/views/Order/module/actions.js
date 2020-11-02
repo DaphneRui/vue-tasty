@@ -10,7 +10,6 @@ const actions = {
          const userId = _.get(getStorage('userInfo'),'_id');
          const list = await loadOrder(userId);
          commit(types.LOAD_ORDER,list );
-         console.log('actions======>list',list);
       } catch (error) {
          commit(types.LOAD_ORDER,{ message: error.message });
       }finally{

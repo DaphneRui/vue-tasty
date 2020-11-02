@@ -28,7 +28,8 @@
 
 <script>
 import _ from 'lodash';
-import moment from 'moment-timezone';
+// import moment from 'moment-timezone';
+import { checkRestaurantClosed } from '@/common/utils.js';
 import restItem from '@/components/RestaurantItem/RestaurantItem';
 import { mapActions,mapState } from 'vuex';
 export default {
@@ -78,8 +79,8 @@ export default {
          const openedRestaurant = [];
          const closedRestaurant = [];
          _.forEach(restList,(item)=>{
-
-            if(this.checkRestaurantClosed(item)){
+            /* 验证餐馆是否关闭 */
+            if(checkRestaurantClosed(item)){
                openedRestaurant.push(item);
             }else{
                closedRestaurant.push(item);
@@ -88,36 +89,6 @@ export default {
          return _.concat(openedRestaurant, closedRestaurant);
 
       },
-
-      /* 验证餐馆是否关闭 */
-      checkRestaurantClosed (restaurant){
-         const date = new Date();
-         /* 纽约时间 */
-         const timezone = _.get(restaurant, 'timezone');
-         const currentTime = moment.tz(date, timezone);
-         const newYorkTime = currentTime.hours() * 60 + currentTime.minutes();
-         /* 星期几 */
-         const currentWeek = currentTime.day();
-         /* 营业时间 */
-         const index = currentWeek - 1;
-         const bankingHour = _.get(restaurant,`hours[${index}]`);
-         /* 开始时间 */
-         const startHour = _.get(bankingHour, 'start');
-         /* 结束时间 */
-         const endHour = _.get(bankingHour, 'end');
-         /* 是否在营业时间 */
-         if (newYorkTime > endHour || newYorkTime < startHour) {
-            return false;
-         }
-         /* 是否人为关闭 */
-         const closed = _.get(restaurant, 'closed', null);
-         if (closed !== null) {
-            return false;
-         }
-         return true;
-
-      }
-
    },
 };
 </script>
