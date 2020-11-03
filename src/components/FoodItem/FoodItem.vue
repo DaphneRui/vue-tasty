@@ -23,7 +23,7 @@
           {{ item.name[`${lang}`] }}
         </div>
         <div class="menu-price">
-          {{ item.price | Money }}
+          {{ price }}
         </div>
       </div>
     </div>
@@ -33,16 +33,10 @@
 <script>
 import './foodItem.scss';
 import { mapState,mapActions } from 'vuex';
+import { formatPrice } from '@/common/utils';
 import _ from 'lodash';
 export default {
    name: 'FoodItem',
-   /* 菜品价格 */
-   filters:{
-      Money: function (value){
-         value = (value / 100).toFixed(2);
-         return '$' + value;
-      }
-   },
    props:{
       item:{
          type:Object,
@@ -58,6 +52,9 @@ export default {
          'cart': state => state.cart.cart
 
       }),
+      price (){
+         return formatPrice(this.$props.item.price);
+      },
       /* 菜品计数 */
       count (){
          /* 在购物车中寻找同种的菜品 */

@@ -50,7 +50,7 @@
 
       <div class="container-between order-total">
         <div> {{ $t('menu.total') }} </div>
-        <div> ${{ totalPrice }}</div>
+        <div> {{ totalPrice }}</div>
       </div>
 
       <div class="container-row-center more-btn">
@@ -70,6 +70,7 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
+import { getTotal,formatPrice } from '@/common/utils';
 
 /* eslint-disable */
 export default {
@@ -104,7 +105,7 @@ export default {
       
       // 显示菜的价格
       price(){
-          return this.$props.item.cart[0].totalPrice;
+       
       },
 
       // 显示订单中所点的菜及数量
@@ -119,13 +120,15 @@ export default {
 
       // 显示总价
       totalPrice(){
-        let totalPrice = 0;
-        _.forEach(this.$props.item.cart,(item)=>{
-            totalPrice += item.price / 100;
-        });
-        console.log('totalPrice===>',totalPrice);
-        return totalPrice.toFixed(2);
-      }
+        return formatPrice(getTotal(this.$props.item.cart));
+        // let totalPrice = 0;
+        // _.forEach(this.$props.item.cart,(item)=>{
+        //     totalPrice += item.price / 100;
+        // });
+        // console.log('totalPrice===>',totalPrice);
+        // return totalPrice.toFixed(2);
+      },
+      
     },
 
     methods: {
@@ -144,6 +147,8 @@ export default {
             document.removeEventListener('click',this.handleOut,true)
           }
         },
+
+       
     },
     
 };

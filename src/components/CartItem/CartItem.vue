@@ -7,7 +7,7 @@
     <div class="cartItem-right">
       <!-- 价格 -->
       <div class="cartItem-price">
-        {{ price | Money }}
+        {{ price }}
       </div>
       <!-- 减少 -->
       <button
@@ -34,16 +34,9 @@
 <script>
 import { mapState,mapActions } from 'vuex';
 import './cartItem.scss';
-// import _ from 'lodash';
+import { formatPrice } from '@/common/utils';
 export default {
    name: 'CartItem',
-   /* 菜品价格 */
-   filters:{
-      Money: function (value){
-         value = (value / 100).toFixed(2);
-         return '$' + value;
-      }
-   },
    props:{
       item:{
          type:Array,
@@ -63,15 +56,12 @@ export default {
          return this.$props.item[0].name;
       },
       price (){
-         return this.$props.item.length * this.$props.item[0].price;
+         return formatPrice(this.$props.item.length * this.$props.item[0].price);
       },
       count (){
          return this.$props.item.length;
       }
 
-   },
-   created () {
-      // console.log(this.$props.item);
    },
    methods:{
       ...mapActions([
