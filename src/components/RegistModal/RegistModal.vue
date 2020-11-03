@@ -85,13 +85,17 @@ export default {
          if(this.checkPass != this.password){
             console.log('======>in');
             this.$modal.show('error',{ message:this.$t('login.error.comfirmPassword') });
+            this.checkPass = '';
          }
-         this.regist({ username:this.username,password:this.password });
-         /* 点击注册之后隐藏注册模态框并清空输入内容 */
-         this.$modal.hide('regist');
-         this.username = '';
-         this.password = '';
-         this.checkPass = '';
+         if(checkName(this.username) && checkPassword(this.password) && this.checkPass === this.password){
+
+            this.regist({ username:this.username,password:this.password });
+            /* 点击注册之后隐藏注册模态框并清空输入内容 */
+            this.$modal.hide('regist');
+            this.username = '';
+            this.password = '';
+            this.checkPass = '';
+         }
       }
    }
 };
