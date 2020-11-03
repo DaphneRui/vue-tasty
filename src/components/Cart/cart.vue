@@ -76,9 +76,10 @@
         <!-- 购物车数据 -->
         <div v-if="cartItem.length > 0">
           <CartItem
-            v-for=" item in cartItem"
-            :key="item._id"
-            :item="item"
+            v-for=" items in cartItem"
+            :key="items._id"
+            :items="items"
+            :showbtn="true"
           />
         </div>
       </div>

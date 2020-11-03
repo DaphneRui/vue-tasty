@@ -8,32 +8,40 @@
       <div class="title-text order-item-name">
         {{ name }}
       </div>
-      <div class="container-row-center sub-title-text">
+      <div class="container-row-center order-time">
         {{ time }}
       </div>
     </div>
 
     <!-- order里的菜品 -->
     <div class="order-items">
-      <div
+      <CartItem
+        v-for="items in orderItems"
+        :key="items.key"
+        :items="items"
+        :showbtn="false"
+      ></CartItem>
+      <!-- <div
         v-for="items in orderItems"
         :key="items[0]._id"
         class="container-between cart-item"
       >
-        <!-- 显示购物车中所点的菜及数量 -->
+        显示购物车中所点的菜及数量
         <div class="cart-item-name">
           {{ items[0].name[`${lang}`] }}
         </div>
-        <div
-          v-if="show"
-          class="cart-item-price"
-        >
-          $ {{ items[0].price/100 }}
+        <div class="cart-item-main">
+          <div
+            v-if="show"
+            class="cart-item-price"
+          >
+            $ {{ items[0].price/100 }}
+          </div>
+          <div class="cart-item-count">
+            {{ items.length }}
+          </div>
         </div>
-        <div class="cart-item-count">
-          {{ items.length }}
-        </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- 展开后的bottom -->
@@ -70,10 +78,14 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
+import CartItem from '../CartItem/CartItem';
 
 /* eslint-disable */
 export default {
     name: 'OrderItem',
+    components:{
+      CartItem
+    },
     props:{
         item:{
             type:Object,
