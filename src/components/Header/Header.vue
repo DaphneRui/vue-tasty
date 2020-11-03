@@ -125,7 +125,7 @@ export default {
             if(this.$route.path === '/order'){
                this.showLogout = true;
                this.showLogin = false;
-               //  this.showHistory = false;
+               this.showHistory = false;
             }else{
                this.showHistory = true;
                this.showLogout = true;
@@ -134,6 +134,7 @@ export default {
          }else{
             if(this.$route.path !== '/login'){
                this.showLogin = true;
+               this.showHistory = false;
             }
          }
       },
@@ -152,6 +153,7 @@ export default {
       /* 跳转到order页面 */
       jumpToHistory (){
          this.$router.push('/order');
+         this.showDown = false;
       }
    }
 };
