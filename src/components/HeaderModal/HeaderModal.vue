@@ -15,7 +15,7 @@
 
     <!-- 历史订单 -->
     <button
-      v-if="showHistory"
+      v-if="showOrder"
       class="down-order"
       @click="jumpToHistory"
     >
@@ -61,38 +61,25 @@ export default {
          required:true
       }
    },
-   data () {
-      return {
-         showLogin:false,
-         showLogout:false,
-         showHistory:false
-      };
-   },
    computed:{
       ...mapState({
          'lang': state => state.language.lang
       }),
-      isLogin (){
-         if(_.get(getStorage('userInfo'),'token')){
-            return true;
-         }else{
-            return false;
-         }
+      showLogin (){
+         const path = this.$route.path;
+         return !_.get(getStorage('userInfo'),'token') && path !== '/login';
       },
-      isPathOrder (){
-         if(this.$route.path === '/order'){
-            return true;
-         }else{
-            return false;
-         }
+      showOrder (){
+         const path = this.$route.path;
+         return _.get(getStorage('userInfo'),'token') && path != '/order';
       },
+      showLogout (){
+         return _.get(getStorage('userInfo'),'token');
+      }
    },
    mounted () {
       /* 点击头像icon，显示头部框 */
       document.addEventListener('mousedown',this.clickListener);
-      this.showLogin = !this.isLogin && this.$route.path !== '/login';
-      this.showHistory = this.isLogin && !this.isPathOrder;
-      this.showLogout = this.isLogin;
    },
    destroyed (){
       document.removeEventListener('mousedown',this.clickListener,true);
@@ -114,10 +101,8 @@ export default {
       },
       /* 点击登出按钮，清除浏览器和vuex数据 */
       logout (){
-         this.showLogin = true;
-         this.showHistory = false;
-         this.showLogout = false;
          this.clearData();
+         this.close();
       },
       /* 增加一个监听器，点击头部框以外的区域，让这个框消失 */
       clickListener (e){
