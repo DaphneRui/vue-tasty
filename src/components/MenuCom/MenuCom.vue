@@ -9,7 +9,7 @@
     <div class="rectangle"></div>
 
     <div>
-      <food-item
+      <FoodItem
         v-for="item in foods"
         :key="item._id"
         :item="item"

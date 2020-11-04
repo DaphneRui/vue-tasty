@@ -21,27 +21,6 @@
         :items="items"
         :showbtn="false"
       ></CartItem>
-      <!-- <div
-        v-for="items in orderItems"
-        :key="items[0]._id"
-        class="container-between cart-item"
-      >
-        显示购物车中所点的菜及数量
-        <div class="cart-item-name">
-          {{ items[0].name[`${lang}`] }}
-        </div>
-        <div class="cart-item-main">
-          <div
-            v-if="show"
-            class="cart-item-price"
-          >
-            $ {{ items[0].price/100 }}
-          </div>
-          <div class="cart-item-count">
-            {{ items.length }}
-          </div>
-        </div>
-      </div> -->
     </div>
 
     <!-- 展开后的bottom -->
@@ -58,7 +37,7 @@
 
       <div class="container-between order-total">
         <div> {{ $t('menu.total') }} </div>
-        <div> ${{ totalPrice }}</div>
+        <div> {{ totalPrice | FormatPrice }}</div>
       </div>
 
       <div class="container-row-center more-btn">
@@ -78,6 +57,7 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
+import { getTotal } from '@/common/utils';
 import CartItem from '../CartItem/CartItem';
 
 /* eslint-disable */
@@ -113,12 +93,6 @@ export default {
           return Moment(this.$props.item.createdAt).format('YYYY-MM-DD hh:mm');
       },
       
-      
-      // 显示菜的价格
-      price(){
-          return this.$props.item.cart[0].totalPrice;
-      },
-
       // 显示订单中所点的菜及数量
       orderItems (){
 
@@ -131,13 +105,9 @@ export default {
 
       // 显示总价
       totalPrice(){
-        let totalPrice = 0;
-        _.forEach(this.$props.item.cart,(item)=>{
-            totalPrice += item.price / 100;
-        });
-        console.log('totalPrice===>',totalPrice);
-        return totalPrice.toFixed(2);
-      }
+        return getTotal(this.$props.item.cart);
+      },
+      
     },
 
     methods: {
@@ -156,6 +126,8 @@ export default {
             document.removeEventListener('click',this.handleOut,true)
           }
         },
+
+       
     },
     
 };
