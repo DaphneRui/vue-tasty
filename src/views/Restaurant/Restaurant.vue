@@ -8,18 +8,18 @@
       <div class="rest-boxs">
         <!-- 循环输出各个餐馆 按奇偶数分两列 -->
         <div>
-          <rest-item
+          <RestItem
             v-for="item in splitColumns.leftColumn"
             :key="item._id"
             :item="item"
-          ></rest-item>
+          ></RestItem>
         </div>
         <div class="rightColumn">
-          <rest-item
+          <RestItem
             v-for="item in splitColumns.rightColumn"
             :key="item._id"
             :item="item"
-          ></rest-item>
+          ></RestItem>
         </div>
       </div>
     </div>
@@ -30,12 +30,12 @@
 import _ from 'lodash';
 // import moment from 'moment-timezone';
 import { checkRestaurantClosed } from '@/common/utils.js';
-import restItem from '@/components/RestaurantItem/RestaurantItem';
+import RestItem from '@/components/RestaurantItem/RestaurantItem';
 import { mapActions,mapState } from 'vuex';
 export default {
    name:'Restaurant',
    components: {
-      restItem
+      RestItem
    },
    data () {
       return {

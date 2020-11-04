@@ -76,9 +76,10 @@
         <!-- 购物车数据 -->
         <div v-if="cartItem.length > 0">
           <CartItem
-            v-for=" item in cartItem"
-            :key="item._id"
-            :item="item"
+            v-for=" items in cartItem"
+            :key="items._id"
+            :items="items"
+            :showbtn="true"
           />
         </div>
       </div>
@@ -88,7 +89,7 @@
           class="container-between menu-cart-total"
         >
           <div>{{ $t('menu.total') }}</div>
-          <div>{{ totalPrice | Money }}</div>
+          <div>{{ price }}</div>
         </div>
         <button
           v-if="isShow == false"
@@ -97,7 +98,7 @@
           :hover="cartItem.length > 0"
           @click="submit"
         >
-          {{ totalPrice | Money }}
+          {{ price | FormatPrice }}
         </button>
         <button
           v-else
@@ -116,7 +117,7 @@ import { mapState,mapActions } from 'vuex';
 import './cart.scss';
 import _ from 'lodash';
 import 'vue-select/dist/vue-select.css';
-import { setStorage,getStorage } from '@/common/utils';
+import { setStorage,getStorage,getTotal } from '@/common/utils';
 import { i18n } from '@/main';
 
 /* components */
@@ -130,13 +131,6 @@ export default {
    name:'Cart',
    components:{
       CartItem
-   },
-   /* 菜品价格 */
-   filters:{
-      Money: function (value){
-         value = (value / 100).toFixed(2);
-         return '$' + value;
-      }
    },
    data () {
       return {
@@ -166,14 +160,8 @@ export default {
          return _.toArray(groupCart);
       },
       /* 总价 */
-      totalPrice (){
-         let price = 0;
-         if (!_.isEmpty(this.cart)) {
-            _.forEach(this.cart, (item) => {
-               price += item.price;
-            });
-         }
-         return price;
+      price (){
+         return getTotal(this.cart);
       }
    },
    methods: {

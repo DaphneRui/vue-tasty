@@ -13,11 +13,11 @@
     <!-- 餐馆分类 -->
     <div class="subTitleTexts">
       <div
-        v-for="(subTitle,index) in subTitleText "
-        :key="index"
+        v-for="subTitle in subTitleText "
+        :key="subTitle.id"
         class="subTitleText"
       >
-        {{ subTitle }}
+        {{ subTitle.tag }}
       </div>
     </div>
 
@@ -67,7 +67,7 @@
         </div>
         <!-- 菜品图片 -->
         <div class="rest-image-box">
-          <rest-img :item="imageUrl3"></rest-img>
+          <RestImg :item="imageUrl3"></RestImg>
         </div>
       </div>
     </div>
@@ -77,12 +77,12 @@
 <script>
 import _ from 'lodash';
 import { mapState,mapActions } from 'vuex';
-import restImg from '../RestaurantImage/RestaurantImage';
-
+import RestImg from '../RestaurantImage/RestaurantImage';
+import { v4 as uuidv4 } from 'uuid';
 export default {
    name:'RestaurantItem',
    components: {
-      restImg
+      RestImg
    },
    props: {
       item: {
@@ -138,7 +138,10 @@ export default {
          let subTitle = [];
          /* 遍历tags 根据语言变化 */
          _.forEach(this.$props.item.tags,(item)=>{
-            subTitle.push(this.$t(`tags.${item}`));
+            subTitle.push({
+               tag: this.$t(`tags.${item}`),
+               id: uuidv4()
+            });
          });
          return subTitle;
       },

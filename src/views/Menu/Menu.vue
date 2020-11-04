@@ -8,11 +8,11 @@
     <!-- 餐馆分类 -->
     <div class="subTitleTexts">
       <div
-        v-for="(subTitle,index) in subTitleText "
-        :key="index"
+        v-for="subTitle in subTitleText "
+        :key="subTitle.id"
         class="subTitleText"
       >
-        {{ subTitle }}
+        {{ subTitle.tag }}
       </div>
     </div>
 
@@ -22,9 +22,9 @@
         {{ $t('menu.no-menu') }}
       </div>
       <!-- 渲染菜品 -->
-      <menu-item
-        v-for="(item,index) in renderFoods"
-        :key="index"
+      <MenuItem
+        v-for="item in renderFoods"
+        :key="item.categories._id"
         :foods="item.foods"
         :categories="item.categories"
       />
@@ -40,19 +40,19 @@
 <script>
 import './Menu.scss';
 import _ from 'lodash';
-// import moment from 'moment-timezone';
+import { v4 as uuidv4 } from 'uuid';
 import { checkRestaurantClosed } from '@/common/utils.js';
 import { setStorage,getStorage } from '@/common/utils.js';
 import * as types from '@/store/mutation-type';
 import { mapActions,mapState } from 'vuex';
-import menuItem from '@/components/MenuCom/MenuCom';
+import MenuItem from '@/components/MenuCom/MenuCom';
 import Cart from '@/components/Cart/Cart';
 import { i18n } from '@/main';
 
 export default {
    name:'Menu',
    components:{
-      menuItem,
+      MenuItem,
       Cart
    },
    computed:{
@@ -79,7 +79,10 @@ export default {
          let subTitle = [];
          /* 遍历tags 根据语言变化 */
          _.forEach(getStorage('restaurant').tags,(item)=>{
-            subTitle.push(this.$t(`tags.${item}`));
+            subTitle.push({
+               tag: this.$t(`tags.${item}`),
+               id: uuidv4()
+            });
          });
          return subTitle;
       },
@@ -113,7 +116,6 @@ export default {
          setStorage('cart',[]);
          this.$store.commit(types.CLEAR_CART);
       }
-
    },
    mounted () {
       /* 检测店铺是否关闭 */

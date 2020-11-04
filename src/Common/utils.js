@@ -1,6 +1,5 @@
 /* 引入加密所需的依赖 */
 import crypto from 'crypto';
-
 import _ from 'lodash';
 import moment from 'moment-timezone';
 
@@ -68,4 +67,17 @@ export function checkRestaurantClosed (restaurant){
    }
    return true;
 
+}
+
+/* 获取购物车总价 */
+export function getTotal (cart){
+   let price = 0;
+
+   if (!_.isEmpty(cart)) {
+      _.forEach(cart, (item) => {
+         price += item.price;
+      });
+   }
+
+   return price;
 }

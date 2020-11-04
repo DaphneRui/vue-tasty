@@ -30,6 +30,13 @@ export const i18n = new VueI18n({
 
 });
 
+/* 价格全局过滤器 */
+
+Vue.filter('FormatPrice', (value) => {
+   value = (value / 100).toFixed(2);
+   return '$' + value;
+});
+
 new Vue({
    store,
    router,
