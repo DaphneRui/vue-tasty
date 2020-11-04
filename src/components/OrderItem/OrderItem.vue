@@ -8,32 +8,19 @@
       <div class="title-text order-item-name">
         {{ name }}
       </div>
-      <div class="container-row-center sub-title-text">
+      <div class="container-row-center order-time">
         {{ time }}
       </div>
     </div>
 
     <!-- order里的菜品 -->
     <div class="order-items">
-      <div
+      <CartItem
         v-for="items in orderItems"
-        :key="items[0]._id"
-        class="container-between cart-item"
-      >
-        <!-- 显示购物车中所点的菜及数量 -->
-        <div class="cart-item-name">
-          {{ items[0].name[`${lang}`] }}
-        </div>
-        <div
-          v-if="show"
-          class="cart-item-price"
-        >
-          $ {{ items[0].price/100 }}
-        </div>
-        <div class="cart-item-count">
-          {{ items.length }}
-        </div>
-      </div>
+        :key="items.key"
+        :items="items"
+        :showbtn="false"
+      ></CartItem>
     </div>
 
     <!-- 展开后的bottom -->
@@ -71,10 +58,14 @@ import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
 import { getTotal } from '@/common/utils';
+import CartItem from '../CartItem/CartItem';
 
 /* eslint-disable */
 export default {
     name: 'OrderItem',
+    components:{
+      CartItem
+    },
     props:{
         item:{
             type:Object,
@@ -102,12 +93,6 @@ export default {
           return Moment(this.$props.item.createdAt).format('YYYY-MM-DD hh:mm');
       },
       
-      
-      // 显示菜的价格
-      price(){
-       
-      },
-
       // 显示订单中所点的菜及数量
       orderItems (){
 
@@ -121,12 +106,6 @@ export default {
       // 显示总价
       totalPrice(){
         return getTotal(this.$props.item.cart);
-        // let totalPrice = 0;
-        // _.forEach(this.$props.item.cart,(item)=>{
-        //     totalPrice += item.price / 100;
-        // });
-        // console.log('totalPrice===>',totalPrice);
-        // return totalPrice.toFixed(2);
       },
       
     },
