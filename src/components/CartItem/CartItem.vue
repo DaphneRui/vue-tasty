@@ -7,7 +7,7 @@
     <div class="cartItem-right">
       <!-- 价格 -->
       <div class="cartItem-price">
-        {{ price }}
+        {{ price | FormatPrice }}
       </div>
       <!-- 减少 -->
       <button
@@ -34,7 +34,6 @@
 <script>
 import { mapState,mapActions } from 'vuex';
 import './cartItem.scss';
-import { formatPrice } from '@/common/utils';
 export default {
    name: 'CartItem',
    props:{
@@ -56,7 +55,7 @@ export default {
          return this.$props.item[0].name;
       },
       price (){
-         return formatPrice(this.$props.item.length * this.$props.item[0].price);
+         return this.$props.item.length * this.$props.item[0].price;
       },
       count (){
          return this.$props.item.length;

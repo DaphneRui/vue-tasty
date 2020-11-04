@@ -23,7 +23,7 @@
           {{ item.name[`${lang}`] }}
         </div>
         <div class="menu-price">
-          {{ price }}
+          {{ price | FormatPrice }}
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 <script>
 import './foodItem.scss';
 import { mapState,mapActions } from 'vuex';
-import { formatPrice } from '@/common/utils';
+
 import _ from 'lodash';
 export default {
    name: 'FoodItem',
@@ -53,7 +53,7 @@ export default {
 
       }),
       price (){
-         return formatPrice(this.$props.item.price);
+         return this.$props.item.price;
       },
       /* 菜品计数 */
       count (){

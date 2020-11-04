@@ -50,7 +50,7 @@
 
       <div class="container-between order-total">
         <div> {{ $t('menu.total') }} </div>
-        <div> {{ totalPrice }}</div>
+        <div> {{ totalPrice | FormatPrice }}</div>
       </div>
 
       <div class="container-row-center more-btn">
@@ -70,7 +70,7 @@
 import { mapState } from 'vuex';
 import Moment from 'moment';
 import './orderItem.scss';
-import { getTotal,formatPrice } from '@/common/utils';
+import { getTotal } from '@/common/utils';
 
 /* eslint-disable */
 export default {
@@ -120,7 +120,7 @@ export default {
 
       // 显示总价
       totalPrice(){
-        return formatPrice(getTotal(this.$props.item.cart));
+        return getTotal(this.$props.item.cart);
         // let totalPrice = 0;
         // _.forEach(this.$props.item.cart,(item)=>{
         //     totalPrice += item.price / 100;

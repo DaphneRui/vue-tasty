@@ -81,9 +81,3 @@ export function getTotal (cart){
 
    return price;
 }
-
-/* 格式化价格 */
-export function formatPrice (value){
-   value = (value / 100).toFixed(2);
-   return '$' + value;
-}

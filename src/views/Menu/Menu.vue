@@ -116,7 +116,6 @@ export default {
          setStorage('cart',[]);
          this.$store.commit(types.CLEAR_CART);
       }
-      console.log(this.renderFoods);
    },
    mounted () {
       /* 检测店铺是否关闭 */

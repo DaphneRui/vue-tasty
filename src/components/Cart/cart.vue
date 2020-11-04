@@ -97,7 +97,7 @@
           :hover="cartItem.length > 0"
           @click="submit"
         >
-          {{ price }}
+          {{ price | FormatPrice }}
         </button>
         <button
           v-else
@@ -116,7 +116,7 @@ import { mapState,mapActions } from 'vuex';
 import './cart.scss';
 import _ from 'lodash';
 import 'vue-select/dist/vue-select.css';
-import { setStorage,getStorage,getTotal,formatPrice } from '@/common/utils';
+import { setStorage,getStorage,getTotal } from '@/common/utils';
 import { i18n } from '@/main';
 
 /* components */
@@ -160,7 +160,7 @@ export default {
       },
       /* 总价 */
       price (){
-         return formatPrice(getTotal(this.cart));
+         return getTotal(this.cart);
       }
    },
    methods: {
