@@ -11,17 +11,19 @@
       </div>
       <!-- 减少 -->
       <button
+        v-if="showbtn"
         class="cartItem-removeBtn"
         @click="removeFood"
       >
         -
       </button>
       <!-- 数量 -->
-      <div class="cartItem-count">
+      <div :class="[showbtn ? 'cartItem-count' : 'cart-item-count']">
         {{ count }}
       </div>
       <!-- 增加 -->
       <button
+        v-if="showbtn"
         class="cartItem-addBtn"
         @click="addFood"
       >
@@ -45,8 +47,12 @@ export default {
       }
    },
    props:{
-      item:{
+      items:{
          type:Array,
+         required:true
+      },
+      showbtn:{
+         type:Boolean,
          required:true
       }
    },
@@ -60,13 +66,13 @@ export default {
          'lang':state=>state.language.lang
       }),
       name (){
-         return this.$props.item[0].name;
+         return this.$props.items[0].name;
       },
       price (){
-         return this.$props.item.length * this.$props.item[0].price;
+         return this.$props.items.length * this.$props.items[0].price;
       },
       count (){
-         return this.$props.item.length;
+         return this.$props.items.length;
       }
 
    },
@@ -79,10 +85,10 @@ export default {
          'removeCart'
       ]),
       addFood (){
-         this.addCart({ food: this.$props.item[0] });
+         this.addCart({ food: this.$props.items[0] });
       },
       removeFood (){
-         this.removeCart({ food: this.$props.item[0] });
+         this.removeCart({ food: this.$props.items[0] });
       }
    }
 };
