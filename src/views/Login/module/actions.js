@@ -20,9 +20,9 @@ const actions = {
             router.push('/restaurant');
          }
       }catch(error){
-         if(error.code === 'No user'){
-            this._vm.$modal.show('error',{ message:error.message });
-         }
+         // if(error.code === 'No user'){
+         //    this._vm.$modal.show('error',{ message:error.message });
+         // }
          this._vm.$modal.show('error',{ message:error.message });
       }finally{
          commit(types.HIDE_LOADING);
